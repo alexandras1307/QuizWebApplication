@@ -1,8 +1,10 @@
-﻿@model IEnumerable<QuizWebApplication.Models.QuizCategoryQuestionClass>
+﻿@model QuizWebApplication.Models.QuizCategoryQuestionClass
 
 @{
     ViewBag.Title = "Take";
     Layout = "~/Views/Shared/StudentDashboardLayout.cshtml";
+    @Scripts.Render("~/bundles/jquery")
+
 }
 
 <div style="float:right">
@@ -20,58 +22,21 @@
 </div>
 
 <br />
-<h1 style="font-weight:bold">Quiz Form</h1><hr />
+<h1 style="font-weight:bold">Quiz Form</h1>
+<hr />
 <h3 style="font-weight:bold">
-    Quiz for: @Html.DisplayFor(model => model.First().CategoryName)
+    Quiz for: @Html.DisplayFor(model => model.CategoryName)
 </h3>
 <hr />
 
-<form action="Take" method="post">
+@using (Html.BeginForm("Take", "Quiz", FormMethod.Post, new { id = "formQuiz" }))
+{
 
-    @foreach (var item in Model)
-    {
-
-        <h4 style="font-weight:bold">
-            @item.QuestionText
-        </h4>
-        <div style="padding:10px">
-            <input id="option1" type="radio" name="@item.QuestionText" value="@item.QuestionOption1">
-            <label for="option1">@item.QuestionOption1</label>
-            &nbsp;&nbsp;
-            <input id="option2" type="radio" name="@item.QuestionText" value="@item.QuestionOption2">
-            <label for="option2">@item.QuestionOption2</label>
-            &nbsp;&nbsp;
-            <input id="option3" type="radio" name="@item.QuestionText" value="@item.QuestionOption3">
-            <label for="option3">@item.QuestionOption3</label>
-            &nbsp;&nbsp;
-            <input id="option4" type="radio" name="@item.QuestionText" value="@item.QuestionOption4">
-            <label for="option4">@item.QuestionOption4</label>
-        </div>
-        @*<div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
-                <label class="custom-control-label" for="defaultInline1">@item.QuestionOption1</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
-                <label class="custom-control-label" for="defaultInline1">@item.QuestionOption2</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
-                <label class="custom-control-label" for="defaultInline1">@item.QuestionOption3</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
-                <label class="custom-control-label" for="defaultInline1">@item.QuestionOption4</label>
-            </div>*@
-    }
-
-
+    @Html.EditorFor(x => x.Questions)
 
     <hr />
-    <input type="submit" value="Submit Quiz" class="btn btn-primary btn-lg">
-
-</form>
-
+    <button id="btnSubmit" type="submit" class="btn btn-primary btn-lg">Submit Quiz</button>
+}
 
 <script>
     function getTimeRemaining(endtime) {
@@ -108,4 +73,3 @@
     const deadline = new Date(Date.parse(new Date()) + 600 * 1000);
     initializeClock('clockdiv', deadline);
 </script>
-

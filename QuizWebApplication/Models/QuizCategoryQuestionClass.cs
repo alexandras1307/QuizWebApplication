@@ -25,6 +25,8 @@ namespace QuizWebApplication.Models
         public string QuestionOption4 { get; set; }
 
         public string CorrectOption { get; set; }
+
+        public List<Answers> Questions { get; set; }
     }
 
 }

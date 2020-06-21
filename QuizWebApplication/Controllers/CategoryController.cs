@@ -10,38 +10,45 @@ namespace QuizWebApplication.Controllers
 {
     public class CategoryController : Controller
     {
-        CategoryDataAccess categoryDataAccess = new CategoryDataAccess();
-        //test123
+        private readonly string DbConnection = ConfigurationManager.ConnectionStrings["QuizApplicationDatabase"].ConnectionString;
+        private const string GET_ALL_CATEGORIES = "GetAllCategories";
+        private const string INSERT_NEW_CATEGORY = "InsertNewCategory";
+
         // GET: CreateCategory
         [HttpGet]
         public ActionResult Index()
         {
-            List<Models.Category> list = new List<Models.Category>();
+
+            var list = new List<Category>();
+
             try
             {
-                using (SqlConnection sqlConnection = new SqlConnection())
+                using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
                 {
-                    string sqlQuery = "select * from QuizCategory";
-                    sqlConnection.ConnectionString = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
 
-                    DataTable dataTable = new DataTable();
-                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
-                    sqlDataAdapter.SelectCommand = new SqlCommand(sqlQuery, sqlConnection);
+                    sqlConnection.Open();
 
-                    sqlDataAdapter.Fill(dataTable);
-
-                    foreach (DataRow row in dataTable.Rows)
+                    using (var sqlCommand = new SqlCommand(GET_ALL_CATEGORIES, sqlConnection))
                     {
-                        var category = new Models.Category
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                        using (var sqlReader = sqlCommand.ExecuteReader())
                         {
-                            CategoryId = row["CategoryId"].GetHashCode(),
-                            CategoryName = row["CategoryName"].ToString()
-                        };
-                        list.Add(category);
+
+                            while(sqlReader.Read())
+                            {
+                                var cat = new Category
+                                {
+                                    CategoryId = sqlReader.GetInt32(0),
+                                    CategoryName = sqlReader.GetString(1)
+                                };
+
+                                list.Add(cat);
+                            };
+                        }
                     }
-                    sqlDataAdapter.Dispose();
-                    sqlConnection.Close();
                 }
+
                 return View(list);
             }
             catch
@@ -57,22 +64,24 @@ namespace QuizWebApplication.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(Category createCategory)
+        public ActionResult Create(Category category)
         {
-            string connection = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
 
-            using (SqlConnection sqlConnection = new SqlConnection(connection))
+            using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
             {
-                var sql = $"insert into QuizCategory (CategoryName) values ('{createCategory.CategoryName}')";
-                using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand(INSERT_NEW_CATEGORY, sqlConnection))
                 {
                     sqlConnection.Open();
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@CategoryName", category.CategoryName);
+   
                     sqlCommand.ExecuteNonQuery();
-                    sqlCommand.Dispose();
+
                     sqlConnection.Close();
                 }
+
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
         }
 
         //public ActionResult Details(QuizCategoryQuestionClass createQuestion)

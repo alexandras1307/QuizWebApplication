@@ -13,6 +13,9 @@ namespace QuizWebApplication.Controllers
     public class QuestionController : Controller
     {
         private readonly string DbConnection = ConfigurationManager.ConnectionStrings["QuizApplicationDatabase"].ConnectionString;
+        private const string GET_ALL_QUESTIONS = "GetAllQuestions";
+        private const string GET_ALL_CATEGORIES = "GetAllCategories";
+        private const string INSERT_NEW_QUESTION = "InsertNewQuestion";
         // GET: Question
         public ActionResult Index()
         {
@@ -20,99 +23,122 @@ namespace QuizWebApplication.Controllers
             return View();
         }
 
-        public static List<QuizCategoryQuestionClass> Questions()
+        public List<QuizCategoryQuestionClass> Questions()
         {
-            List<QuizCategoryQuestionClass> questions = new List<QuizCategoryQuestionClass>();
-            string sqlConnection = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
+            var questions = new List<QuizCategoryQuestionClass>();
 
-            using (SqlConnection sqlConn = new SqlConnection(sqlConnection))
+            using (var sqlConn = new SqlConnection(DbConnection))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("QuizCategoryQuestion", sqlConn))
+                using (SqlCommand sqlCommand = new SqlCommand(GET_ALL_QUESTIONS, sqlConn))
                 {
                     sqlConn.Open();
-                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-
-                    while (sqlDataReader.Read())
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                     {
-                        QuizCategoryQuestionClass quizCategoryQuestion = new QuizCategoryQuestionClass();
-                        quizCategoryQuestion.CategoryName = sqlDataReader["CategoryName"].ToString();
-                        quizCategoryQuestion.QuestionText = sqlDataReader["QuestionText"].ToString();
-                        quizCategoryQuestion.QuestionOption1 = sqlDataReader["QuestionOption1"].ToString();
-                        quizCategoryQuestion.QuestionOption2 = sqlDataReader["QuestionOption2"].ToString();
-                        quizCategoryQuestion.QuestionOption3 = sqlDataReader["QuestionOption3"].ToString();
-                        quizCategoryQuestion.QuestionOption4 = sqlDataReader["QuestionOption4"].ToString();
-                        quizCategoryQuestion.CorrectOption = sqlDataReader["CorrectOption"].ToString();
-                        questions.Add(quizCategoryQuestion);
-                    }
-                    sqlConn.Close();
-                }
-                return questions;
-            }
+                        while (sqlDataReader.Read())
+                        {
+                            var question = new QuizCategoryQuestionClass
+                            {
+                                CategoryName = sqlDataReader["CategoryName"].ToString(),
+                                QuestionText = sqlDataReader["QuestionText"].ToString(),
+                                QuestionOption1 = sqlDataReader["QuestionOption1"].ToString(),
+                                QuestionOption2 = sqlDataReader["QuestionOption2"].ToString(),
+                                QuestionOption3 = sqlDataReader["QuestionOption3"].ToString(),
+                                QuestionOption4 = sqlDataReader["QuestionOption4"].ToString(),
+                                CorrectOption = sqlDataReader["CorrectOption"].ToString()
+                            };
 
+                            questions.Add(question);
+                        }
+                    }
+                }
+            }
+            return questions;
         }
 
         public ActionResult Create()
         {
-            var categoryList = new List<Category>();
-            using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
-            {
-                var query = @"SELECT 
-                                QC.CategoryId,
-                                QC.CategoryName
-                             FROM QuizCategory QC";
 
-                using (SqlCommand command = new SqlCommand(query, sqlConnection))
+            try
+            {
+                var list = new List<Category>();
+                using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
                 {
+
                     sqlConnection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    if (reader.HasRows)
+
+                    using (var sqlCommand = new SqlCommand(GET_ALL_CATEGORIES, sqlConnection))
                     {
-                        while (reader.Read())
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                        using (var sqlReader = sqlCommand.ExecuteReader())
                         {
-                            categoryList.Add(new Category
+
+                            while (sqlReader.Read())
                             {
-                                CategoryId = reader.GetInt32(0),
-                                CategoryName = reader.GetString(1)
-                            });
+                                var cat = new Category
+                                {
+                                    CategoryId = sqlReader.GetInt32(0),
+                                    CategoryName = sqlReader.GetString(1)
+                                };
+
+                                list.Add(cat);
+                            };
                         }
                     }
-                    reader.Close();
-                    command.Dispose();
-                    sqlConnection.Close();
                 }
+
+                var model = new Question();
+                model.CategoryList = list;
+
+                return View(model);
             }
-
-            var model = new Question();
-            model.CategoryList = categoryList;
-            //model.CategoryDropDown = new SelectList(categoryList, "CategoryId", "CategoryName");
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Create(Question createQuestion, string CategoryList)
-        {
-            var categoryId = 0;
-            if(!int.TryParse(CategoryList, out categoryId))
+            catch
             {
                 return View("Error");
             }
 
-            string connection = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
+            
+        }
 
-            using (SqlConnection sqlConnection = new SqlConnection(connection))
+        [HttpPost]
+        public ActionResult Create(Question question, string CategoryList)
+        {
+            var categoryId = 0;
+            if (!int.TryParse(CategoryList, out categoryId))
             {
-                var sqlQuery = $"insert into QuizQuestion (QuestionText, QuestionOption1, QuestionOption2, QuestionOption3, QuestionOption4, CategoryId) values ('{createQuestion.QuestionText}', '{createQuestion.QuestionOption1}', '{createQuestion.QuestionOption2}', '{createQuestion.QuestionOption3}', '{createQuestion.QuestionOption4}', '{categoryId}')";
+                return View("Error");
+            }
 
-                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection))
+
+            using (var sqlConnection = new SqlConnection(DbConnection))
+            {
+                try
                 {
+
                     sqlConnection.Open();
-                    sqlCommand.ExecuteNonQuery();
-                    sqlCommand.Dispose();
-                    sqlConnection.Close();
+
+                    using (var sqlCommand = new SqlCommand(INSERT_NEW_QUESTION, sqlConnection))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.Parameters.AddWithValue("@QuestionText", question.QuestionText);
+                        sqlCommand.Parameters.AddWithValue("@QuestionOption1", question.QuestionOption1);
+                        sqlCommand.Parameters.AddWithValue("@QuestionOption2", question.QuestionOption2);
+                        sqlCommand.Parameters.AddWithValue("@QuestionOption3", question.QuestionOption3);
+                        sqlCommand.Parameters.AddWithValue("@QuestionOption4", question.QuestionOption4);
+                        sqlCommand.Parameters.AddWithValue("@CorrectOption", question.CorrectOption);
+                        sqlCommand.Parameters.AddWithValue("@CategoryId", categoryId);
+
+                        sqlCommand.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return View("Error");
                 }
             }
+
             return RedirectToAction("Index");
         }
     }

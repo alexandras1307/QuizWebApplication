@@ -1,4 +1,4 @@
-﻿@model QuizWebApplication.Models.StudentRegistration
+﻿@model QuizWebApplication.Models.UserProfile
 
 @{
     ViewBag.Title = "Index";
@@ -13,15 +13,21 @@
     <form action="Index" method="post">
         <div class="agile-field-txt">
             <label>
-                <i class="fa fa-user" aria-hidden="true"> Name   </i>
+                <i class="fa fa-user" aria-hidden="true"> First Name   </i>
             </label>
-            <input align="right" type="text" name="StudentName" placeholder="Enter Name" required="" />
+            <input align="right" type="text" name="FirstName" placeholder="Enter Name" required="" />
+        </div>
+        <div class="agile-field-txt">
+            <label>
+                <i class="fa fa-user" aria-hidden="true">Last Name   </i>
+            </label>
+            <input align="right" type="text" name="LastName" placeholder="Enter Name" required="" />
         </div>
         <div class="agile-field-txt">
             <label>
                 <i class="fa fa-user" aria-hidden="true"> Email    </i>
             </label>
-            <input type="text" name="StudentEmail" placeholder="Enter Email" required="" />
+            <input type="text" name="Email" placeholder="Enter Email" required="" />
         </div>
 
         <div class="agile-field-txt">
@@ -32,7 +38,7 @@
         </div>
         <div class="agile-field-txt">
             <label>
-                <i class="fa fa-unlock-alt" aria-hidden="true">  Confirm  </i>
+                <i class="fa fa-unlock-alt" aria-hidden="true"> Confirm </i>
             </label>
             <input type="password" name="ConfirmPassword" placeholder="Repeat Password" required="" id="myInput" />
         </div>
@@ -50,12 +56,12 @@
         <!-- //end script -->
         <input type="submit" value="CREATE ACCOUNT">
         <div class="agile-right" style="color:black; position:center">
-            <a style="color:black; position:center" href="/StudentLogin/Login">Already have an account? Login!</a>
+            <a style="color:black; position:center" href="/Login/Login">Already have an account? Login!</a>
         </div>
     </form>
 </div>
 
 
 <div>
-    @Html.ActionLink("Register as a student", "/StudentRegistration/Index")
+    @Html.ActionLink("Register as a student", "/UserRegistration/Index")
 </div>

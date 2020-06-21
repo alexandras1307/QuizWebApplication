@@ -6,18 +6,19 @@ using System.Web;
 
 namespace QuizWebApplication.Models
 {
-    public class StudentRegistration
+    public class UserProfile
     {
         [Key]
-        public int StudentId { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Please enter your name")]
         [Required(ErrorMessage = "Please enter your name!")]
-        public string StudentName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         [Display(Name = "Please enter your email")]
         [Required(ErrorMessage = "Please enter your email!")]
-        public string StudentEmail { get; set; }
+        public string Email { get; set; }
 
         [Display(Name = "Please choose your password")]
         [Required(ErrorMessage = "Please choose your password!")]
@@ -30,6 +31,6 @@ namespace QuizWebApplication.Models
 
         //[Display(Name = "Please enter your name")]
         //[Required(ErrorMessage = "Please enter your name!")]
-        public int IsActive { get; set; }
+        public bool Active { get; set; }
     }
 }

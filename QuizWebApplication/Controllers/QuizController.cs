@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,9 @@ namespace QuizWebApplication.Controllers
     public class QuizController : Controller
     {
         private readonly string DbConnection = ConfigurationManager.ConnectionStrings["QuizApplicationDatabase"].ConnectionString;
-
+        private const string GET_ALL_QUESTIONS_BY_CATEGORY = "GetQuestionsByCategory";
+        private const string GET_ALL_CATEGORIES = "GetAllCategories";
+        private const string INSERT_NEW_ANSWER = "InsertNewAnswer";
         public ActionResult Index(string CategoryList)
         {
 
@@ -21,38 +24,35 @@ namespace QuizWebApplication.Controllers
                 return RedirectToAction("Take", new { categoryList = CategoryList });
             }
 
-            var catList = new List<Category>();
+            var list = new List<Category>();
             using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
             {
-                var query = @"SELECT 
-                                QC.CategoryId,
-                                QC.CategoryName
-                             FROM QuizCategory QC";
 
-                using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                sqlConnection.Open();
+
+                using (var sqlCommand = new SqlCommand(GET_ALL_CATEGORIES, sqlConnection))
                 {
-                    sqlConnection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    if (reader.HasRows)
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    using (var sqlReader = sqlCommand.ExecuteReader())
                     {
-                        while (reader.Read())
+
+                        while (sqlReader.Read())
                         {
-                            catList.Add(new Category
+                            var cat = new Category
                             {
-                                CategoryId = reader.GetInt32(0),
-                                CategoryName = reader.GetString(1)
-                            });
-                        }
+                                CategoryId = sqlReader.GetInt32(0),
+                                CategoryName = sqlReader.GetString(1)
+                            };
+
+                            list.Add(cat);
+                        };
                     }
-                    reader.Close();
-                    command.Dispose();
-                    sqlConnection.Close();
                 }
             }
 
             var model = new Question();
-            model.CategoryList = catList;
-            //model.CategoryDropDown = new SelectList(categoryList, "CategoryId", "CategoryName");
+            model.CategoryList = list;
 
             return View(model);
         }
@@ -66,55 +66,66 @@ namespace QuizWebApplication.Controllers
                 return View("Error");
             }
 
-            List<QuizCategoryQuestionClass> quiz = new List<QuizCategoryQuestionClass>();
+            List<QuizCategoryQuestionClass> quizList = new List<QuizCategoryQuestionClass>();
 
-            string connection = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
-
-            using (SqlConnection sqlConnection = new SqlConnection(connection))
+            var quiz = new QuizCategoryQuestionClass();
+            quiz.Questions = new List<Answers>();
+            using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
             {
-                var sqlQuery = $"SELECT [QuestionText] ,[QuestionOption1] ,[QuestionOption2] ,[QuestionOption3] ,[QuestionOption4],[CategoryName] ,[CorrectOption] FROM QuizQuestion INNER JOIN QuizCategory ON QuizCategory.CategoryId = QuizQuestion.CategoryId where QuizQuestion.CategoryId = { categoryList }";
 
-                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand(GET_ALL_QUESTIONS_BY_CATEGORY, sqlConnection))
                 {
                     sqlConnection.Open();
-                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
-                    while (sqlDataReader.Read())
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@CategoryId", categoryId);
+
+                    using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                     {
-                        QuizCategoryQuestionClass quizCategoryQuestion = new QuizCategoryQuestionClass();
-                        quizCategoryQuestion.CategoryId = int.Parse(categoryList);
-                        quizCategoryQuestion.CategoryName = sqlDataReader["CategoryName"].ToString();
-                        quizCategoryQuestion.QuestionText = sqlDataReader["QuestionText"].ToString();
-                        quizCategoryQuestion.QuestionOption1 = sqlDataReader["QuestionOption1"].ToString();
-                        quizCategoryQuestion.QuestionOption2 = sqlDataReader["QuestionOption2"].ToString();
-                        quizCategoryQuestion.QuestionOption3 = sqlDataReader["QuestionOption3"].ToString();
-                        quizCategoryQuestion.QuestionOption4 = sqlDataReader["QuestionOption4"].ToString();
-                        quiz.Add(quizCategoryQuestion);
-                    }
-
-                    sqlCommand.Dispose();
-                    sqlConnection.Close();
+                        
+                        while (sqlDataReader.Read())
+                        {
+                            quiz.CategoryName = sqlDataReader["CategoryName"].ToString();
+                            quiz.Questions.Add(
+                            new Answers
+                            {
+                                Answer = "",
+                                QuestionId = (int)sqlDataReader["QuestionId"],
+                                QuestionText = sqlDataReader["QuestionText"].ToString(),
+                                QuestionOption1 = sqlDataReader["QuestionOption1"].ToString(),
+                                QuestionOption2 = sqlDataReader["QuestionOption2"].ToString(),
+                                QuestionOption3 = sqlDataReader["QuestionOption3"].ToString(),
+                                QuestionOption4 = sqlDataReader["QuestionOption4"].ToString()
+                            });
+                        }
+                    }               
                 }
             }
-            // return RedirectToAction("Take");
+
             return View(quiz);
         }
 
         [HttpPost]
-        public ActionResult Take(Answers submitAnswer)
+        public ActionResult Take(QuizCategoryQuestionClass model)
         {
-            string connection = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
 
-            using (SqlConnection sqlConnection = new SqlConnection(connection))
+            using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
             {
-                var sqlQuery = $"insert into Answers (StudentId, QuestionId, Answer) values ('{submitAnswer.StudentId}', '{submitAnswer.QuestionId}', '{submitAnswer.Answer}')";
-
-                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection))
+                sqlConnection.Open();
+                foreach (var answer in model.Questions)
                 {
-                    sqlConnection.Open();
-                    sqlCommand.ExecuteNonQuery();
-                    sqlCommand.Dispose();
-                    sqlConnection.Close();
+                    using (SqlCommand sqlCommand = new SqlCommand(INSERT_NEW_ANSWER, sqlConnection))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+
+
+                        sqlCommand.Parameters.AddWithValue("@StudentId", Session["UserId"]);
+                        sqlCommand.Parameters.AddWithValue("@QuestionId", answer.QuestionId);
+                        sqlCommand.Parameters.AddWithValue("@Answer", answer.Answer);
+
+                        sqlCommand.ExecuteNonQuery();
+                    }
+
                 }
             }
             return RedirectToAction("Done");

@@ -8,13 +8,15 @@ namespace QuizWebApplication.Models
 {
     public class Answers
     {
-        [Key]
-        public int AnswerId { get; set; }
-
+        public string QuestionText { get; set; }
         public int QuestionId { get; set; }
+        public string QuestionOption1 { get; set; }
 
-        public int StudentId { get; set; }
+        public string QuestionOption2 { get; set; }
 
+        public string QuestionOption3 { get; set; }
+
+        public string QuestionOption4 { get; set; }
         public string Answer { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using QuizWebApplication.Models;
+using QuizWebApplication.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -27,12 +28,13 @@ namespace QuizWebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult Verify(TeacherLogin teacherLogin)
+        public ActionResult Verify(UserProfile login)
         {
             connectionString();
             sqlConnection.Open();
             sqlCommand.Connection = sqlConnection;
-            sqlCommand.CommandText = "select TeacherEmail , Password from TeacherProfile where TeacherEmail='" + teacherLogin.TeacherEmail + "' and Password='" + teacherLogin.Password + "' ";
+            sqlCommand.CommandText = $"Select Email, Password from UserProfile where Active = 1 and Role = {(int)RoleEnumeration.Teacher} " +
+                                    $"and Email= {login.Email} and Password= {login.Password} ";
             sqlDataReader = sqlCommand.ExecuteReader();
 
             if(sqlDataReader.Read())

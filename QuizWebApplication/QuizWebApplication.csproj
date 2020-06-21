@@ -126,21 +126,20 @@
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\QuizCategoryQuestionController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
-    <Compile Include="Controllers\StudentLoginController.cs" />
-    <Compile Include="Controllers\StudentRegistrationController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UserRegistrationController.cs" />
     <Compile Include="Controllers\TeacherLoginController.cs" />
-    <Compile Include="Controllers\TeacherRegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryDataAccess.cs" />
+    <Compile Include="Models\Enums\RoleEnumeration.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Answers.cs" />
     <Compile Include="Models\QuizCategoryQuestionClass.cs" />
-    <Compile Include="Models\StudentRegistration.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\TeacherLogin.cs" />
-    <Compile Include="Models\TeacherRegistrationClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +196,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\move-top.js" />
+    <Content Include="SQL\StoredProcedures\InsertUserProfile.sql" />
     <Content Include="Styles\font-awesome.css" />
     <Content Include="Styles\style.css" />
     <Content Include="Web.config">
@@ -220,7 +220,7 @@
     <Content Include="Views\TeacherRegistration\Index.cshtml" />
     <Content Include="Views\TeacherRegistration\Index1.cshtml" />
     <Content Include="Views\Shared\TeacherDashboardLayout.cshtml" />
-    <Content Include="Views\StudentRegistration\SuccessfulRegistrationStudent.cshtml" />
+    <Content Include="Views\UserRegistration\SuccessfulRegistrationStudent.cshtml" />
     <Content Include="Views\TeacherRegistration\SuccessfulRegistrationTeacher.cshtml" />
     <Content Include="Views\TeacherLogin\Login.cshtml" />
     <Content Include="Views\TeacherLogin\Dashboard.cshtml" />
@@ -234,22 +234,25 @@
     <Content Include="Views\Question\Create.cshtml" />
     <Content Include="Views\Question\Post.cshtml" />
     <Content Include="Views\Shared\_RegistrationLayout.cshtml" />
-    <Content Include="Views\StudentRegistration\Index.cshtml" />
-    <Content Include="Views\StudentLogin\Login.cshtml" />
-    <Content Include="Views\StudentLogin\UnsuccessfulLogin.cshtml" />
-    <Content Include="Views\StudentRegistration\View.cshtml" />
-    <Content Include="Views\StudentLogin\Dashboard.cshtml" />
+    <Content Include="Views\UserRegistration\Index.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\UnsuccessfulLogin.cshtml" />
+    <Content Include="Views\UserRegistration\View.cshtml" />
+    <Content Include="Views\Login\Dashboard.cshtml" />
     <Content Include="Views\Lectures\Index.cshtml" />
     <Content Include="Views\QuizCategoryQuestion\Index.cshtml" />
     <Content Include="Views\Question\Create1.cshtml" />
     <Content Include="Views\Quiz\Index.cshtml" />
     <Content Include="Views\Lectures\Upload.cshtml" />
     <Content Include="Views\Quiz\Take.cshtml" />
-    <Content Include="Views\StudentRegistration\Details.cshtml" />
+    <Content Include="Views\UserRegistration\Details.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Answers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
+    <Folder Include="SQL\Queries\" />
+    <Folder Include="SQL\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
