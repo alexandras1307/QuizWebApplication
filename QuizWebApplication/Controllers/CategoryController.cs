@@ -11,7 +11,7 @@ namespace QuizWebApplication.Controllers
     public class CategoryController : Controller
     {
         CategoryDataAccess categoryDataAccess = new CategoryDataAccess();
-
+        //test123
         // GET: CreateCategory
         [HttpGet]
         public ActionResult Index()
