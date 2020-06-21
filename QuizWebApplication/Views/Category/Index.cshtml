@@ -1,0 +1,47 @@
+﻿@model IEnumerable<QuizWebApplication.Models.Category>
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/TeacherDashboardLayout.cshtml";
+}
+
+<br />
+<h1 style="font-weight:bold">Categories</h1><br />
+@*<p style="font-size: 1em; font-weight: 400; color: #fff; padding: 0.6em 0.5em; width: 17%; background: #006fc4;  outline: none; display: inline-block; border: none; border-radius: 3px; -webkit-appearance: none;    margin: 0em 0em 0em 0em;">
+    @Html.ActionLink("Create New Category", "Create")
+    <a href="/Category/Create"> Create new category </a>
+</p><br /><br />*@
+
+<div style="font-size:x-large; font-weight:bold">
+    <a href="/Category/Create"> Create new category </a><br /><br />
+</div>
+
+<table class="table">
+    <tr style="background-color:#006fc4; color:#fff">
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.CategoryId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
+        </td>
+    </tr>
+    }
+
+</table>
+

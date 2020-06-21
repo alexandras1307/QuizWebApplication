@@ -1,0 +1,111 @@
+﻿@model IEnumerable<QuizWebApplication.Models.QuizCategoryQuestionClass>
+
+@{
+    ViewBag.Title = "Take";
+    Layout = "~/Views/Shared/StudentDashboardLayout.cshtml";
+}
+
+<div style="float:right">
+    <h3 style="font-weight:bold">Countdown</h3>
+    <div id="clockdiv">
+        <span>
+            <span class="minutes"></span>
+            <span class="smalltext">Minutes</span>
+        </span>
+        <span>
+            <span class="seconds"></span>
+            <span class="smalltext">Seconds</span>
+        </span>
+    </div>
+</div>
+
+<br />
+<h1 style="font-weight:bold">Quiz Form</h1><hr />
+<h3 style="font-weight:bold">
+    Quiz for: @Html.DisplayFor(model => model.First().CategoryName)
+</h3>
+<hr />
+
+<form action="Take" method="post">
+
+    @foreach (var item in Model)
+    {
+
+        <h4 style="font-weight:bold">
+            @item.QuestionText
+        </h4>
+        <div style="padding:10px">
+            <input id="option1" type="radio" name="@item.QuestionText" value="@item.QuestionOption1">
+            <label for="option1">@item.QuestionOption1</label>
+            &nbsp;&nbsp;
+            <input id="option2" type="radio" name="@item.QuestionText" value="@item.QuestionOption2">
+            <label for="option2">@item.QuestionOption2</label>
+            &nbsp;&nbsp;
+            <input id="option3" type="radio" name="@item.QuestionText" value="@item.QuestionOption3">
+            <label for="option3">@item.QuestionOption3</label>
+            &nbsp;&nbsp;
+            <input id="option4" type="radio" name="@item.QuestionText" value="@item.QuestionOption4">
+            <label for="option4">@item.QuestionOption4</label>
+        </div>
+        @*<div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                <label class="custom-control-label" for="defaultInline1">@item.QuestionOption1</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                <label class="custom-control-label" for="defaultInline1">@item.QuestionOption2</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                <label class="custom-control-label" for="defaultInline1">@item.QuestionOption3</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                <label class="custom-control-label" for="defaultInline1">@item.QuestionOption4</label>
+            </div>*@
+    }
+
+
+
+    <hr />
+    <input type="submit" value="Submit Quiz" class="btn btn-primary btn-lg">
+
+</form>
+
+
+<script>
+    function getTimeRemaining(endtime) {
+        const total = Date.parse(endtime) - Date.parse(new Date());
+        const seconds = Math.floor((total / 1000) % 60);
+        const minutes = Math.floor((total / 1000 / 60) % 60);
+        return {
+            total,
+            minutes,
+            seconds
+        };
+    }
+
+    function initializeClock(id, endtime) {
+        const clock = document.getElementById(id);
+        const minutesSpan = clock.querySelector('.minutes');
+        const secondsSpan = clock.querySelector('.seconds');
+
+        function updateClock() {
+            const t = getTimeRemaining(endtime);
+
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+            if (t.total <= 0) {
+                clearInterval(timeinterval);
+            }
+        }
+
+        updateClock();
+        const timeinterval = setInterval(updateClock, 1000);
+    }
+
+    const deadline = new Date(Date.parse(new Date()) + 600 * 1000);
+    initializeClock('clockdiv', deadline);
+</script>
+

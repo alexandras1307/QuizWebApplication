@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/TeacherDashboardLayout.cshtml";
+}
+
+@{
+    IEnumerable<QuizWebApplication.Models.QuizCategoryQuestionClass> quizCategoryQuestions = ViewData["Message"] as IEnumerable<QuizWebApplication.Models.QuizCategoryQuestionClass>;
+}
+<br />
+<h1 style="font-weight:bold">Questions</h1><br />
+<div style="font-size:x-large; font-weight:bold">
+    @Html.ActionLink("Create new question", "Create")
+</div><br />
+
+<table class="table">
+    <tr style="background-color:#006fc4; color:#fff">
+        <th>Category</th>
+        <th>Question</th>
+        <th>Option1</th>
+        <th>Option2</th>
+        <th>Option3</th>
+        <th>Option4</th>
+        <th>CorrectOption</th>
+    </tr>
+    @foreach (var item in quizCategoryQuestions)
+    {
+    <tr>
+        <td>@item.CategoryName</td>
+        <td>@item.QuestionText</td>
+        <td>@item.QuestionOption1</td>
+        <td>@item.QuestionOption2</td>
+        <td>@item.QuestionOption3</td>
+        <td>@item.QuestionOption4</td>
+        <td>@item.CorrectOption</td>
+    </tr>
+
+    }
+
+</table>
+

@@ -1,0 +1,61 @@
+﻿@model QuizWebApplication.Models.StudentRegistration
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_RegistrationLayout.cshtml";
+}
+
+<h2>Login</h2>
+
+<h1 style="position:fixed; top:200px; left: 600px">Student Registration Form </h1>
+<div class="w3ls-login box box--big" style="position:fixed; top: 350px; left: 600px">
+    <!-- form starts here -->
+    <form action="Index" method="post">
+        <div class="agile-field-txt">
+            <label>
+                <i class="fa fa-user" aria-hidden="true"> Name   </i>
+            </label>
+            <input align="right" type="text" name="StudentName" placeholder="Enter Name" required="" />
+        </div>
+        <div class="agile-field-txt">
+            <label>
+                <i class="fa fa-user" aria-hidden="true"> Email    </i>
+            </label>
+            <input type="text" name="StudentEmail" placeholder="Enter Email" required="" />
+        </div>
+
+        <div class="agile-field-txt">
+            <label>
+                <i class="fa fa-unlock-alt" aria-hidden="true"> Password </i>
+            </label>
+            <input type="password" name="Password" placeholder="Enter Password" required=""/>
+        </div>
+        <div class="agile-field-txt">
+            <label>
+                <i class="fa fa-unlock-alt" aria-hidden="true">  Confirm  </i>
+            </label>
+            <input type="password" name="ConfirmPassword" placeholder="Repeat Password" required="" id="myInput" />
+        </div>
+        <!-- script for show password -->
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myInput");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+        </script>
+        <!-- //end script -->
+        <input type="submit" value="CREATE ACCOUNT">
+        <div class="agile-right" style="color:black; position:center">
+            <a style="color:black; position:center" href="/StudentLogin/Login">Already have an account? Login!</a>
+        </div>
+    </form>
+</div>
+
+
+<div>
+    @Html.ActionLink("Register as a student", "/StudentRegistration/Index")
+</div>
