@@ -11,16 +11,19 @@ namespace QuizWebApplication.Models
         [Key]
         public int Id { get; set; }
 
-        [Display(Name = "Please enter your name")]
+        [Display(Name = "First Name")]
         [Required(ErrorMessage = "Please enter your name!")]
         public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
+        [Required(ErrorMessage = "Please enter your name!")]
         public string LastName { get; set; }
 
-        [Display(Name = "Please enter your email")]
+        [Display(Name = "Email")]
         [Required(ErrorMessage = "Please enter your email!")]
         public string Email { get; set; }
 
-        [Display(Name = "Please choose your password")]
+        [Display(Name = "Password")]
         [Required(ErrorMessage = "Please choose your password!")]
         public string Password { get; set; }
 

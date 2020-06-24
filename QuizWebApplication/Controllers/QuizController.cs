@@ -15,7 +15,10 @@ namespace QuizWebApplication.Controllers
         private readonly string DbConnection = ConfigurationManager.ConnectionStrings["QuizApplicationDatabase"].ConnectionString;
         private const string GET_ALL_QUESTIONS_BY_CATEGORY = "GetQuestionsByCategory";
         private const string GET_ALL_CATEGORIES = "GetAllCategories";
+        private const string GET_UNSOLVED_QUIZ = "GetUnsolvedQuiz";
         private const string INSERT_NEW_ANSWER = "InsertNewAnswer";
+        private const string GET_ANSWERS_BY_STUDENT_CATEGORY = "GetAnswersByStudentAndCategory";
+
         public ActionResult Index(string CategoryList)
         {
 
@@ -70,6 +73,7 @@ namespace QuizWebApplication.Controllers
 
             var quiz = new QuizCategoryQuestionClass();
             quiz.Questions = new List<Answers>();
+            quiz.CategoryId = categoryId;
             using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
             {
 
@@ -119,7 +123,7 @@ namespace QuizWebApplication.Controllers
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
 
-                        sqlCommand.Parameters.AddWithValue("@StudentId", Session["UserId"]);
+                        sqlCommand.Parameters.AddWithValue("@UserId", Session["UserId"]);
                         sqlCommand.Parameters.AddWithValue("@QuestionId", answer.QuestionId);
                         sqlCommand.Parameters.AddWithValue("@Answer", answer.Answer);
 
@@ -128,12 +132,48 @@ namespace QuizWebApplication.Controllers
 
                 }
             }
+            TempData["Answers"] = model;
             return RedirectToAction("Done");
         }
 
         public ActionResult Done()
         {
-            return View();
+            var answers = TempData["Answers"] as QuizCategoryQuestionClass;
+            List<QuizCategoryQuestionClass> quizList = new List<QuizCategoryQuestionClass>();
+
+            var quiz = new QuizCategoryQuestionClass();
+            quiz.Questions = new List<Answers>();
+            using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
+            {
+
+                using (SqlCommand sqlCommand = new SqlCommand(GET_ANSWERS_BY_STUDENT_CATEGORY, sqlConnection))
+                {
+                    sqlConnection.Open();
+
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@CategoryId", answers.CategoryId);
+                    sqlCommand.Parameters.AddWithValue("@UserId", Session["UserId"]);
+
+                    using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                    {
+
+                        while (sqlDataReader.Read())
+                        {
+                            quiz.CategoryName = sqlDataReader["CategoryName"].ToString();
+                            quiz.Questions.Add(
+                            new Answers
+                            {
+                                UserId = (int)sqlDataReader["UserId"],
+                                Answer = sqlDataReader["Answer"].ToString(),
+                                QuestionText = sqlDataReader["QuestionText"].ToString(),
+                                CategoryName = sqlDataReader["CategoryName"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return View(quiz);
         }
     }
 }

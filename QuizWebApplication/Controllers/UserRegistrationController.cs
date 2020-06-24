@@ -22,7 +22,7 @@ namespace QuizWebApplication.Controllers
         public ActionResult Index(UserProfile profile)
         {
             //string connection = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
-            string connection = "Server=PAUL-PC\\SQLEXPRESS;Database=QuizApplicationDatabase;User Id=sa;Password=disertatie";
+            string connection = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
 
             using (SqlConnection sqlConnection = new SqlConnection(connection))
             {

@@ -120,9 +120,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\GradesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LecturesController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\QuizCategoryQuestionController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
@@ -248,11 +251,15 @@
     <Content Include="Views\UserRegistration\Details.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Answers.cshtml" />
+    <Content Include="Views\Quiz\Done.cshtml" />
+    <Content Include="Views\Grades\Index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
     <Folder Include="SQL\Queries\" />
     <Folder Include="SQL\Tables\" />
+    <Folder Include="Views\Catalog\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

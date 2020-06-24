@@ -16,7 +16,7 @@ namespace QuizWebApplication.Controllers
         // GET: StudentLogin
         private readonly string DbConnection = ConfigurationManager.ConnectionStrings["QuizApplicationDatabase"].ConnectionString;
         private const string USER_LOGIN = "UserLogin";
-        SqlDataReader sqlDataReader;
+        // SqlDataReader sqlDataReader;
 
         [HttpGet]
         public ActionResult Login()

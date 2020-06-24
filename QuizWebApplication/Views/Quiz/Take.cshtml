@@ -33,7 +33,7 @@
 {
 
     @Html.EditorFor(x => x.Questions)
-
+    @Html.HiddenFor(x => x.CategoryId)
     <hr />
     <button id="btnSubmit" type="submit" class="btn btn-primary btn-lg">Submit Quiz</button>
 }

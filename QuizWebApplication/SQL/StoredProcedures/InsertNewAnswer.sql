@@ -1,5 +1,5 @@
 ALTER PROCEDURE InsertNewAnswer
-@StudentId INT,
+@UserId INT,
 @QuestionId INT,
 @Answer NVARCHAR(200)
 
@@ -7,13 +7,13 @@ AS
 BEGIN
 	INSERT INTO Answers
 	(
-		StudentId,
+		UserId,
 		QuestionId,
 		Answer
 	)
 	VALUES
 	(
-		@StudentId,
+		@UserId,
 		@QuestionId,
 		@Answer
 	)

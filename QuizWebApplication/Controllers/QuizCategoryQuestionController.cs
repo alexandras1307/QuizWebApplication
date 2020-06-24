@@ -10,7 +10,8 @@ namespace QuizWebApplication.Controllers
 {
     public class QuizCategoryQuestionController : Controller
     {
-        // GET: QuizCategoryQuestion
+        private const string GET_ALL_QUESTIONS_BY_CATEGORY = "GetQuestionsByCategory";
+
         public ActionResult Index()
         {
             ViewData["Message"] = CategoryQuestions();
@@ -24,7 +25,7 @@ namespace QuizWebApplication.Controllers
 
             using (SqlConnection sqlConn = new SqlConnection(sqlConnection))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("QuizCategoryQuestion", sqlConn))
+                using (SqlCommand sqlCommand = new SqlCommand("GetQuestionsByCategory", sqlConn))
                 {
                     sqlConn.Open();
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;

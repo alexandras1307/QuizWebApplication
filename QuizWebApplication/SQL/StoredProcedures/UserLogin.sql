@@ -6,7 +6,7 @@ AS
 BEGIN
 
 	SELECT
-		UP.Id,
+		UP.UserId,
 		UP.Role
 	FROM UserProfile UP
 	WHERE UP.Active = 1
