@@ -1,14 +1,42 @@
-﻿@{
+﻿@model IEnumerable<QuizWebApplication.Models.Lectures>
+
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/TeacherDashboardLayout.cshtml";
 }
 
-<br />
-<h1 style="font-weight:bold">Lectures</h1><br />
+@{
+    IEnumerable<QuizWebApplication.Models.Lectures> lectures = ViewData["Message"] as IEnumerable<QuizWebApplication.Models.Lectures>;
+}
 
-<div class="col-md-9 ftr-email">
-    <form action="" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" style="font-size: 1em; font-weight: 400; color: #fff; padding: 0.6em 1.0em; width: 40%; background: #006fc4;  outline: none; display: inline-block; border: none; border-radius: 3px; -webkit-appearance: none; margin: 0em 0em 0em 3em;"><br />
-        <br /><input type="submit" value="Upload file">
-    </form>
-</div>
+<h2>Lectures</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lecture)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in lectures)
+    {
+        <tr>
+            <td>
+                @item.Lecture
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

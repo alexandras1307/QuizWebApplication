@@ -6,8 +6,10 @@ BEGIN
 	SELECT 
 		A.Answer, 
 		A.UserId,
+		QQ.QuestionID,
 		QQ.QuestionText, 
-		QQ.CorrectOption, 
+		QQ.CorrectOption,
+		QC.CategoryId, 
 		QC.CategoryName	       
 	FROM [Answers] A 
 	JOIN QuizQuestion QQ ON A.QuestionId = QQ.QuestionID 

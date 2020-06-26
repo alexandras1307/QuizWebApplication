@@ -1,4 +1,4 @@
-﻿@model QuizWebApplication.Models.QuizCategoryQuestionClass
+﻿@model QuizWebApplication.Models.QuizResult
 @{
     ViewBag.Title = "Done";
     Layout = "~/Views/Shared/StudentDashboardLayout.cshtml";
@@ -8,40 +8,40 @@
 
 
 <table class="table">
-    <tr>
-
+    <tr style="background-color:#006fc4; color:#fff">
         <th>
-           @* @Html.DisplayNameFor(model => model.CategoryName)*@
-            Category Name
-        </th>
-        <th>
-           @* @Html.DisplayNameFor(model => model.QuestionText)*@
+            @* @Html.DisplayNameFor(model => model.QuestionText)*@
             Question Text
         </th>
         <th>
-           @* @Html.DisplayNameFor(model => model.CorrectOption)*@
+            @* @Html.DisplayNameFor(model => model.CorrectOption)*@
             Correct Option
         </th>
         <th>
-           @* @Html.DisplayNameFor(model => model.Answer)*@
+            @* @Html.DisplayNameFor(model => model.Answer)*@
             Answer
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model.Questions)
+
+@foreach (var item in Model.Questions)
     {
         <tr>
             <td>
-                @item.QuestionText
+                @item.Question.QuestionText
             </td>
             <td>
-                @item.CorrectOption
+                @item.Question.CorrectOption
             </td>
             <td>
-                @item.Answer
+                @item.Question.Answer
             </td>
         </tr>
     }
 
 </table>
+
+<h2>
+    Your result is @Model.Grade.ToString("0.00") %
+</h2>

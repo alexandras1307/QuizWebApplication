@@ -1,19 +1,20 @@
-CREATE TABLE UserTakenQuiz
+CREATE TABLE Grades
     (  
 		Id int primary key identity(1,1),
 		UserId INT,
-		CategoryId INT
+		CategoryId INT,
+		Grade INT
     ) 
 
 
-ALTER TABLE
-    UserTakenQuiz
+ALTER TABLE   
+	Grades 
 ADD CONSTRAINT
-    fk_UserTakenQuiz_UserProfile_UserId
+    fk_Grades_UserProfile_UserId
 FOREIGN KEY (UserId) REFERENCES UserProfile
 
 ALTER TABLE
-    UserTakenQuiz
+    Grades
 ADD CONSTRAINT
-    fk_UserTakenQuiz_Category_CategoryId
+    fk_Grades_Category_CategoryId
 FOREIGN KEY (CategoryId) REFERENCES QuizCategory

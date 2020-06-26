@@ -1,4 +1,4 @@
-﻿@model QuizWebApplication.Models.QuizCategoryQuestionClass
+﻿@model IEnumerable<QuizWebApplication.Models.Answers>
 
 @{
     ViewBag.Title = "Take";
@@ -25,15 +25,15 @@
 <h1 style="font-weight:bold">Quiz Form</h1>
 <hr />
 <h3 style="font-weight:bold">
-    Quiz for: @Html.DisplayFor(model => model.CategoryName)
+    Quiz for: @Html.DisplayFor(model => model.First().Question.CategoryName)
 </h3>
 <hr />
 
 @using (Html.BeginForm("Take", "Quiz", FormMethod.Post, new { id = "formQuiz" }))
 {
 
-    @Html.EditorFor(x => x.Questions)
-    @Html.HiddenFor(x => x.CategoryId)
+    @Html.EditorFor(model => model)
+    @Html.HiddenFor(model => model.First().Question.CategoryId)
     <hr />
     <button id="btnSubmit" type="submit" class="btn btn-primary btn-lg">Submit Quiz</button>
 }

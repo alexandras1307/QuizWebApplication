@@ -138,9 +138,12 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryDataAccess.cs" />
     <Compile Include="Models\Enums\RoleEnumeration.cs" />
+    <Compile Include="Models\Grades.cs" />
+    <Compile Include="Models\Lectures.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Answers.cs" />
     <Compile Include="Models\QuizCategoryQuestionClass.cs" />
+    <Compile Include="Models\QuizResult.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\TeacherLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -242,7 +245,7 @@
     <Content Include="Views\Login\UnsuccessfulLogin.cshtml" />
     <Content Include="Views\UserRegistration\View.cshtml" />
     <Content Include="Views\Login\Dashboard.cshtml" />
-    <Content Include="Views\Lectures\Index.cshtml" />
+    <Content Include="Views\Lectures\IndexOld.cshtml" />
     <Content Include="Views\QuizCategoryQuestion\Index.cshtml" />
     <Content Include="Views\Question\Create1.cshtml" />
     <Content Include="Views\Quiz\Index.cshtml" />
@@ -254,12 +257,15 @@
     <Content Include="Views\Quiz\Done.cshtml" />
     <Content Include="Views\Grades\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Catalog\Index.cshtml" />
+    <Content Include="Views\Lectures\Index.cshtml" />
+    <Content Include="Views\Lectures\Create.cshtml" />
+    <Content Include="Views\Catalog\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
     <Folder Include="SQL\Queries\" />
     <Folder Include="SQL\Tables\" />
-    <Folder Include="Views\Catalog\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

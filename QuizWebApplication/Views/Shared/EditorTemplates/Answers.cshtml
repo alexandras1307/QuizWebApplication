@@ -1,14 +1,17 @@
 ﻿@model QuizWebApplication.Models.Answers
 
-@Html.HiddenFor(x => x.QuestionId, Model.QuestionId)
-@Html.Label(Model.QuestionText)
+@Html.HiddenFor(x => x.Question.QuestionId, Model.Question.QuestionId)
+@Html.HiddenFor(x => x.Question.CategoryId, Model.Question.CategoryId)
+
+@Html.Label(Model.Question.QuestionText)
 <br />
-@Html.RadioButtonFor(x => x.Answer, Model.QuestionOption1) 
-<span>@Model.QuestionOption1</span>
-@Html.RadioButtonFor(x => x.Answer, Model.QuestionOption2) 
-<span>@Model.QuestionOption2</span>
-@Html.RadioButtonFor(x => x.Answer, Model.QuestionOption3) 
-<span>@Model.QuestionOption3</span>
-@Html.RadioButtonFor(x => x.Answer, Model.QuestionOption4) 
-<span>@Model.QuestionOption4</span>
+@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption1)
+@Html.HiddenFor(x => x.Question.CategoryId, Model.Question.CategoryId);
+<span>@Model.Question.QuestionOption1</span>
+@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption2)
+<span>@Model.Question.QuestionOption2</span>
+@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption3)
+<span>@Model.Question.QuestionOption3</span>
+@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption4)
+<span>@Model.Question.QuestionOption4</span>
 <hr />

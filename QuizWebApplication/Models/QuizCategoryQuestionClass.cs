@@ -28,7 +28,9 @@ namespace QuizWebApplication.Models
 
         public string Answer { get; set; }
 
-        public List<Answers> Questions { get; set; }
+        // public decimal Grade { get; set; }
+
+        // public List<Answers> Questions { get; set; }
     }
 
 }

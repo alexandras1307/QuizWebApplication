@@ -1,13 +1,22 @@
 ﻿@model IEnumerable<QuizWebApplication.Models.Grades>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/StudentDashboardLayout.cshtml";
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/TeacherDashboardLayout.cshtml";
 }
 
 <br />
-<h1 style="font-weight:bold">Grades</h1>
+<h1 style="font-weight:bold">Catalog</h1>
 <br />
+
+
+<h3 style="font-weight:bold">
+    Displaying grades for:
+    <span style="font-style:italic">
+        @Model.First().FirstName
+        @Model.First().LastName
+    </span>
+</h3>
 
 <table class="table">
     <tr style="background-color:#006fc4; color:#fff">
@@ -17,17 +26,17 @@
         <th>
             @Html.DisplayNameFor(model => model.Grade)
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
+
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
             <td>
-                @item.Grade.ToString("0.00")
+                @Html.DisplayFor(modelItem => item.Grade)
             </td>
         </tr>
     }
