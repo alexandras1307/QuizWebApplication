@@ -21,7 +21,6 @@ namespace QuizWebApplication.Controllers
         [HttpPost]
         public ActionResult Index(UserProfile profile)
         {
-            //string connection = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
             string connection = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
 
             using (SqlConnection sqlConnection = new SqlConnection(connection))
@@ -52,38 +51,6 @@ namespace QuizWebApplication.Controllers
         public ActionResult SuccessfulRegistrationStudent()
         {
             return View();
-        }
-
-        public ActionResult Details(string studentId)
-        {
-            //List<UserProfile> details = new List<UserProfile>();
-
-            //string connection = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
-
-            //using (SqlConnection sqlConnection = new SqlConnection(connection))
-            //{
-            //    var sqlQuery = $"SELECT * FROM StudentRegistration where StudentId = { studentId }";
-
-            //    using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection))
-            //    {
-            //        sqlConnection.Open();
-            //        SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-
-            //        while (sqlDataReader.Read())
-            //        {
-            //            UserProfile student = new UserProfile();
-            //            student.Id = int.Parse(studentId);
-            //            student.StudentName = sqlDataReader["StudentName"].ToString();
-            //            student.Email = sqlDataReader["StudentEmail"].ToString();
-            //            details.Add(student);
-            //        }
-
-            //        sqlCommand.Dispose();
-            //        sqlConnection.Close();
-            //    }
-            //}
-             return RedirectToAction("Take");
-            //return View(details);
-        }
+        }       
     }
 }

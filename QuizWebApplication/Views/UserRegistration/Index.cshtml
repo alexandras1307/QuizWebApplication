@@ -7,58 +7,53 @@
 
 <h2>Login</h2>
 
-<h1 style="position:fixed; top:200px; left: 600px">Student Registration Form </h1>
-<div class="w3ls-login box box--big" style="position:fixed; top: 350px; left: 600px">
+<h1 style="position:fixed; top:180px; left: 720px; color:white">Registration Form </h1>
+<div class="w3ls-login box box--big" style="position:fixed; top: 350px; left: 530px">
     <!-- form starts here -->
-    <form action="Index" method="post">
-        <div class="agile-field-txt">
-            <label>
-                <i class="fa fa-user" aria-hidden="true"> First Name   </i>
-            </label>
-            <input align="right" type="text" name="FirstName" placeholder="Enter Name" required="" />
+    <form action="Index" method="post" style="display:flex">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="agile-field-txt" style="display: table-row">
+                    <label style="display: table-cell;"><i class="fa fa-user" aria-hidden="true"></i> First Name </label>
+                    <input style="display: table-cell;" type="text" name="FirstName" placeholder="Enter Name" required="" />
+                </div><hr />
+                <div class="agile-field-txt" style="display: table-row">
+                    <label style="display: table-cell;"><i class="fa fa-user" aria-hidden="true"></i> Last Name </label>
+                    <input style="display: table-cell;" align="right" type="text" name="LastName" placeholder="Enter Name" required="" />
+                </div><hr />
+                <div class="agile-field-txt" style="display: table-row">
+                    <label style="display: table-cell;"><i class="fa fa-user" aria-hidden="true"></i> Email </label>
+                    <input style="display: table-cell;" type="text" name="E-mail" placeholder="Enter Email" required="" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="agile-field-txt" style="display: table-row">
+                    <label style="display: table-cell;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Password </label>
+                    <input style="display: table-cell;" type="password" name="Password" placeholder="Enter Password" required="" />
+                </div><hr />
+                <div class="agile-field-txt" style="display: table-row">
+                    <label style="display: table-cell;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Confirm </label>
+                    <input style="display: table-cell;" type="password" name="ConfirmPassword" placeholder="Repeat Password" required="" id="myInput" />
+                </div><hr />
+                <!-- script for show password -->
+                <script>
+                    function myFunction() {
+                        var x = document.getElementById("myInput");
+                        if (x.type === "password") {
+                            x.type = "text";
+                        } else {
+                            x.type = "password";
+                        }
+                    }
+                </script>
+                <!-- //end script -->
+                <input type="submit" value="CREATE ACCOUNT"><br />
+                <div class="agile-right" style="color:black; position:center">
+                    <a position:center" href="/Login/Login">Already have an account? Login!</a>
+                </div>
+            </div>
         </div>
-        <div class="agile-field-txt">
-            <label>
-                <i class="fa fa-user" aria-hidden="true">Last Name   </i>
-            </label>
-            <input align="right" type="text" name="LastName" placeholder="Enter Name" required="" />
-        </div>
-        <div class="agile-field-txt">
-            <label>
-                <i class="fa fa-user" aria-hidden="true"> Email    </i>
-            </label>
-            <input type="text" name="Email" placeholder="Enter Email" required="" />
-        </div>
-
-        <div class="agile-field-txt">
-            <label>
-                <i class="fa fa-unlock-alt" aria-hidden="true"> Password </i>
-            </label>
-            <input type="password" name="Password" placeholder="Enter Password" required=""/>
-        </div>
-        <div class="agile-field-txt">
-            <label>
-                <i class="fa fa-unlock-alt" aria-hidden="true"> Confirm </i>
-            </label>
-            <input type="password" name="ConfirmPassword" placeholder="Repeat Password" required="" id="myInput" />
-        </div>
-        <!-- script for show password -->
-        <script>
-            function myFunction() {
-                var x = document.getElementById("myInput");
-                if (x.type === "password") {
-                    x.type = "text";
-                } else {
-                    x.type = "password";
-                }
-            }
-        </script>
-        <!-- //end script -->
-        <input type="submit" value="CREATE ACCOUNT">
-        <div class="agile-right" style="color:black; position:center">
-            <a style="color:black; position:center" href="/Login/Login">Already have an account? Login!</a>
-        </div>
-    </form>
+</form>
 </div>
 
 

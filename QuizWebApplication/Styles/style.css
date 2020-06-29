@@ -131,6 +131,22 @@ q {
     quotes: none;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #006fc4;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -266,7 +282,7 @@ h1 {
 
 .w3ls-login form {
     position: relative;
-    max-width: 550px;
+    max-width: 950px;
     margin: 0 5vw;
     padding: 3vw;
     border: none;
@@ -441,7 +457,7 @@ label.check {
 }
 .w3ls-login input[type=submit] {
     color: #fff;
-    width: 50%;
+    width: 70%;
 	margin: auto;
     padding: 0.7em 0;
     margin-top: 0em;

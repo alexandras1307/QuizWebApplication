@@ -21,7 +21,7 @@
 <table class="table">
     <tr style="background-color:#006fc4; color:#fff">
         <th>
-            @Html.DisplayNameFor(model => model.CategoryName)
+            Quiz
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Grade)
@@ -36,9 +36,13 @@
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Grade)
+                @Html.DisplayFor(modelItem => item.Grade) %
             </td>
         </tr>
     }
 
 </table>
+<br />
+<div style="font-size:x-large; font-weight:bold">
+    <a href="/Catalog/Index"> Back to catalog </a>
+</div>

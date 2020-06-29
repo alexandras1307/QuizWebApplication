@@ -1,12 +1,13 @@
 ﻿@model IEnumerable<QuizWebApplication.Models.UserProfile>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/StudentDashboardLayout.cshtml";
+    ViewBag.Title = "Teacher";
+    Layout = "~/Views/Shared/TeacherDashboardLayout.cshtml";
 }
 
 <br />
-<h1 style="font-weight:bold">Profile</h1><br />
+<h1 style="font-weight:bold">Profile</h1>
+<br />
 
 <table class="table table-hover">
     @foreach (var item in Model)
@@ -38,7 +39,7 @@
             </tr>
             <tr class="table-info">
                 <th scope="row">
-                    @Html.ActionLink("Edit Profile", "Edit", "Index", new { id = item. })
+                    @Html.ActionLink("Edit Profile", "Edit", "Index", new { id = item.Id })
                 </th>
                 <td></td>
             </tr>

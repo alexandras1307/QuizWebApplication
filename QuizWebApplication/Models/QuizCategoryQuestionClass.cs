@@ -12,6 +12,8 @@ namespace QuizWebApplication.Models
 
         public string CategoryName { get; set; }
 
+        public string Lecture { get; set; }
+
         public int QuestionId { get; set; }
 
         public string QuestionText { get; set; }
@@ -26,11 +28,10 @@ namespace QuizWebApplication.Models
 
         public string CorrectOption { get; set; }
 
-        public string Answer { get; set; }
+        public string Answer { get; set; }        
 
         // public decimal Grade { get; set; }
 
         // public List<Answers> Questions { get; set; }
     }
-
 }

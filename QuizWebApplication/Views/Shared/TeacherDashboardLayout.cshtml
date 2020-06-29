@@ -11,14 +11,28 @@
     <link href="~/css/style.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <title white-space: pre>Dashboard</title>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #006fc4;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
 </head>
 
-<body style="background-image: url(../images/onlineeduDashboardBlue.jpg); background-repeat: no-repeat; background-size:cover; background-position-y:initial; ">
+<body style="background-image: url(../images/onlineeduDashboardBlue.jpg); width: 100%; height: 100%; position: relative; z-index: -1; background-size:cover; background-color:skyblue">
     <div class="header">
         <div class="container">
             <div class="header-main">
                 <div class="logo">
-                    @*<h1><a>Teacher<span class="logo-clr">Dashboard</span></a></h1><br /><br />*@
                     <h1 style="font-weight:bold"><a><span class="logo-clr">Teacher</span></a>Dashboard</h1><br /><br />
                 </div>
             </div>
@@ -30,7 +44,7 @@
                 <div class="row-md-4 process-grid">
                     <a href="/Lectures/Index" class="list-group-item">
                         <h4 data-hover="Lectures">Lectures</h4>
-                        <h2 class="glyphicon glyphicon-folder-open fa-2x" aria-hidden="true"> </h2>
+                        <h2 class="glyphicon glyphicon-book fa-2x" aria-hidden="true"> </h2>
                         <br />
                     </a>
                 </div>
@@ -50,7 +64,7 @@
                 </div>
                 <div class="row-md-4 process-grid">
                     <a href="/QuizCategoryQuestion/Index" class="list-group-item">
-                        <h4 data-hover="About">See all categories and questions</h4>
+                        <h4 data-hover="About">Modules</h4>
                         <h2 class="glyphicon glyphicon-th-list" aria-hidden="true"> </h2>
                         <br />
                     </a>
@@ -58,27 +72,21 @@
 
                 <div class="row-md-4 process-grid">
                     <a href="/Catalog/Index" class="list-group-item">
-                        <h4 data-hover="About">Grade exams</h4>
+                        <h4 data-hover="About">Catalog</h4>
                         <h2 class="glyphicon glyphicon-ok" aria-hidden="true"></h2>
                         <br />
                     </a>
                 </div>
                 <div class="row-md-4 process-grid">
-                    <a href="/Profile/Index" class="list-group-item">
+                    <a href="/Profile/Teacher" class="list-group-item">
                         <h4 data-hover="About">Profile</h4>
-                        <h2 class="glyphicon glyphicon-book" aria-hidden="true"> </h2>
+                        <h2 class="glyphicon glyphicon-user" aria-hidden="true"> </h2>
                         <br />
                     </a>
                 </div>
-
-
-                @*<a href="@Html.Action("AddCategory")" class="list-group-item">Add a new Category</a>
-                    <a href="@Html.Action("AddQuestion")" class="list-group-item">Add Questions</a>
-                    <a href="@Html.Action("Grade Exams")" class="list-group-item">Grading</a>
-                    <a href="@Html.Action("Catalog")" class="list-group-item">Catalog</a>*@
             </div>
         </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="height:800px; border:0px solid gray">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="height:750px; border:0px solid gray; overflow-y: auto;">
 
             @RenderBody()
 

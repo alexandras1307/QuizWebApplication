@@ -9,15 +9,17 @@
     IEnumerable<QuizWebApplication.Models.Lectures> lectures = ViewData["Message"] as IEnumerable<QuizWebApplication.Models.Lectures>;
 }
 
-<h2>Lectures</h2>
+<br />
+<h1 style="font-weight:bold">Lectures</h1><br />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div style="font-size:x-large; font-weight:bold">
+    <a href="/Lectures/Create"> Create new lecture </a><br /><br />
+</div>
+
 <table class="table">
-    <tr>
+    <tr style="background-color:#006fc4; color:#fff">
         <th>
-            @Html.DisplayNameFor(model => model.CategoryId)
+            @Html.DisplayNameFor(model => model.CategoryName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Lecture)
@@ -29,11 +31,14 @@
     {
         <tr>
             <td>
-                @item.Lecture
+                @item.CategoryName
+            </td>
+            <td>
+                <a href="@item.Lecture">Lecture</a>
+
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>

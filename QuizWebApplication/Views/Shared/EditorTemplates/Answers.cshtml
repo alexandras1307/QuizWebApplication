@@ -3,15 +3,20 @@
 @Html.HiddenFor(x => x.Question.QuestionId, Model.Question.QuestionId)
 @Html.HiddenFor(x => x.Question.CategoryId, Model.Question.CategoryId)
 
-@Html.Label(Model.Question.QuestionText)
-<br />
-@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption1)
-@Html.HiddenFor(x => x.Question.CategoryId, Model.Question.CategoryId);
-<span>@Model.Question.QuestionOption1</span>
-@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption2)
-<span>@Model.Question.QuestionOption2</span>
-@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption3)
-<span>@Model.Question.QuestionOption3</span>
-@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption4)
-<span>@Model.Question.QuestionOption4</span>
+<h4>
+    @Html.Label(Model.Question.QuestionText)
+</h4>
+
+@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption1, new { @class = "radio-button-class" })&nbsp;
+@Html.HiddenFor(x => x.Question.CategoryId, Model.Question.CategoryId)
+<span style="font-size:large; cursor:pointer"> @Model.Question.QuestionOption1 </span>&nbsp;&nbsp;
+
+@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption2, new { @class = "radio-button-class" })&nbsp;
+<span style="font-size:large; cursor:pointer"> @Model.Question.QuestionOption2 </span>&nbsp;&nbsp;
+
+@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption3, new { @class = "radio-button-class" })&nbsp;
+<span style="font-size:large; cursor:pointer"> @Model.Question.QuestionOption3 </span>&nbsp;&nbsp;
+
+@Html.RadioButtonFor(x => x.Question.Answer, Model.Question.QuestionOption4, new { @class = "radio-button-class" })&nbsp;
+<span style="font-size:large; cursor:pointer"> @Model.Question.QuestionOption4 </span>
 <hr />

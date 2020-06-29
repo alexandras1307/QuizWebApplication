@@ -16,7 +16,7 @@ namespace QuizWebApplication.Controllers
         private readonly string DbConnection = ConfigurationManager.ConnectionStrings["QuizApplicationDatabase"].ConnectionString;
         private const string GET_ALL_LECTURES = "GetAllLectures";
         private const string GET_ALL_CATEGORIES = "GetAllCategories";
-        private const string INSERT_NEW_LECTURE = "InsertLecture";
+        private const string INSERT_NEW_LECTURE = "InsertNewLecture";
 
         public ActionResult Index()
         {
@@ -40,8 +40,8 @@ namespace QuizWebApplication.Controllers
                         {
                             var lecture = new Lectures
                             {
-                                // CategoryName = sqlDataReader["CategoryName"].ToString(),
-                                Lecture = sqlDataReader["Lecture"].ToString()
+                                Lecture = sqlDataReader["Lecture"].ToString(),
+                                CategoryName = sqlDataReader["CategoryName"].ToString()
                             };
 
                             lectures.Add(lecture);
@@ -108,14 +108,13 @@ namespace QuizWebApplication.Controllers
             {
                 try
                 {
-
                     sqlConnection.Open();
 
                     using (var sqlCommand = new SqlCommand(INSERT_NEW_LECTURE, sqlConnection))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
-                        sqlCommand.Parameters.AddWithValue("@CategoryId", CategoryList);
 
+                        sqlCommand.Parameters.AddWithValue("@CategoryId", categoryId);
                         sqlCommand.Parameters.AddWithValue("@Lecture", lecture.Lecture);
 
                         sqlCommand.ExecuteNonQuery();

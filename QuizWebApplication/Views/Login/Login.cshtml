@@ -6,25 +6,23 @@
 
 <h2>Login</h2>
 
-<h1 style="position:fixed; top:200px; left: 700px">Student Login Form </h1>
-<div class="w3ls-login box box--big" style="position:fixed; top: 370px; left: 600px">
+<h1 style="position:fixed; top:200px; left: 800px; color:white">Login Form </h1>
+<div class="w3ls-login box box--big" style="position:fixed; top: 370px; left: 670px">
     <!-- form starts here -->
-    <form action="Verify" method="post">
-        <div class="agile-field-txt">
-            <label><i class="fa fa-user" aria-hidden="true"></i> Email </label>
-            <input type="text" name="Email" placeholder="Enter Email" required="" />
-        </div>
-        <div class="agile-field-txt">
-            <label><i class="fa fa-unlock-alt" aria-hidden="true"></i> password </label>
-            <input type="password" name="Password" placeholder="Enter Password" required="" id="myInput" />
-            <div class="agile_label">
-                <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+    <form action="Verify" method="post" style="display:table">
+        <div class="agile-field-txt" style="display: table-row">
+            <label style="display: table-cell;"><i class="fa fa-user" aria-hidden="true"></i> Email </label>
+            <input type="text" name="Email" placeholder="Enter Email" required="" style="display: table-cell;" />
+        </div><hr />
+        <div class="agile-field-txt" style="display: table-row">
+            <label style="display: table-cell;"><i class="fa fa-unlock-alt" aria-hidden="true"></i> password </label>
+            <input style="display: table-cell;" type="password" name="Password" placeholder="Enter Password" required="" id="myInput" />
+            <div class="agile_label" style="display: table-cell">
+                <input style="display: table-cell;" id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
                 <label class="check" for="check3">Show password</label>
-            </div>
-            <div class="agile-right">
-                <a href="/StudentRegistration/Index">No account? Register!</a>
-            </div>
-        </div>
+            </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        </div><hr />
         <!-- script for show password -->
         <script>
             function myFunction() {
@@ -37,7 +35,8 @@
             }
         </script>
         <!-- //end script -->
-        <input type="submit" value="LOGIN" class="btn btn-primary btn-lg">
+        <input type="submit" value="LOGIN" class="btn btn-primary btn-lg"><br /><br />
+            <a href="/StudentRegistration/Index">No account? Register!</a>
     </form>
 </div>
 

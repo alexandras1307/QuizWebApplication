@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\GradesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LecturesController.cs" />
@@ -131,13 +132,13 @@
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UserRegistrationController.cs" />
-    <Compile Include="Controllers\TeacherLoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryDataAccess.cs" />
     <Compile Include="Models\Enums\RoleEnumeration.cs" />
+    <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\Grades.cs" />
     <Compile Include="Models\Lectures.cs" />
     <Compile Include="Models\Question.cs" />
@@ -172,6 +173,7 @@
     <Content Include="Images\onlineedu.jpg" />
     <Content Include="Images\onlineeduLogin.jpg" />
     <Content Include="Images\onlineeduLoginBackground.jpg" />
+    <Content Include="Images\onlineeduLoginBackgroundBlack.jpg" />
     <Content Include="Images\social-sprit.png" />
     <Content Include="js\easing.js" />
     <Content Include="js\jquery-1.11.0.min.js" />
@@ -223,11 +225,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\TeacherRegistration\Index.cshtml" />
-    <Content Include="Views\TeacherRegistration\Index1.cshtml" />
     <Content Include="Views\Shared\TeacherDashboardLayout.cshtml" />
     <Content Include="Views\UserRegistration\SuccessfulRegistrationStudent.cshtml" />
-    <Content Include="Views\TeacherRegistration\SuccessfulRegistrationTeacher.cshtml" />
     <Content Include="Views\TeacherLogin\Login.cshtml" />
     <Content Include="Views\TeacherLogin\Dashboard.cshtml" />
     <Content Include="Views\TeacherLogin\UnsuccessfulLogin.cshtml" />
@@ -243,15 +242,10 @@
     <Content Include="Views\UserRegistration\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\UnsuccessfulLogin.cshtml" />
-    <Content Include="Views\UserRegistration\View.cshtml" />
     <Content Include="Views\Login\Dashboard.cshtml" />
-    <Content Include="Views\Lectures\IndexOld.cshtml" />
     <Content Include="Views\QuizCategoryQuestion\Index.cshtml" />
-    <Content Include="Views\Question\Create1.cshtml" />
     <Content Include="Views\Quiz\Index.cshtml" />
-    <Content Include="Views\Lectures\Upload.cshtml" />
     <Content Include="Views\Quiz\Take.cshtml" />
-    <Content Include="Views\UserRegistration\Details.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Answers.cshtml" />
     <Content Include="Views\Quiz\Done.cshtml" />
@@ -261,6 +255,8 @@
     <Content Include="Views\Lectures\Index.cshtml" />
     <Content Include="Views\Lectures\Create.cshtml" />
     <Content Include="Views\Catalog\Details.cshtml" />
+    <Content Include="Views\Profile\Teacher.cshtml" />
+    <Content Include="Views\File\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />

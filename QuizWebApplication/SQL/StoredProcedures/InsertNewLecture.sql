@@ -1,18 +1,18 @@
 ALTER PROCEDURE InsertNewLecture
-@Lecture NVARCHAR(200),
-@CategoryId INT
+@CategoryId INT,
+@Lecture NVARCHAR(200)
 
 AS
 BEGIN
 
 	INSERT INTO Lectures
-	(
-		Lecture,
-		CategoryId
+	(		
+		CategoryId,
+		Lecture
 	)
 	VALUES
 	(
-		@Lecture,
-		@CategoryId
+		@CategoryId,
+		@Lecture		
 	)
 END

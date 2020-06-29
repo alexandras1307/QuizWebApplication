@@ -11,4 +11,5 @@ BEGIN
 		QC.CategoryName
 	FROM QuizQuestion QQ
 	JOIN QuizCategory QC ON QQ.CategoryId = QC.CategoryId
+	ORDER BY QC.CategoryId asc
 END

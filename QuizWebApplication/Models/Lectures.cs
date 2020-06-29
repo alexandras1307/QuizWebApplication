@@ -13,10 +13,14 @@ namespace QuizWebApplication.Models
 
         public int CategoryId { get; set; }
 
+        public string CategoryName { get; set; }
+
         public string Lecture { get; set; }
 
         [Display(Name = "Select Category")]
         public List<Category> CategoryList { get; set; }
+        
+        public List<QuizCategoryQuestionClass> Quiz { get; set; }
 
     }
 }

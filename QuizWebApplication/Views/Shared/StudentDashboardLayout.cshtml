@@ -11,6 +11,23 @@
     <link href="~/css/style.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <title white-space: pre>Dashboard</title>
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #006fc4;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+    </style>
 </head>
 
 <body style="background-image: url(../images/onlineeduDashboardBlue.jpg); background-repeat: no-repeat; background-size:cover; background-position-y:initial; ">
@@ -28,9 +45,9 @@
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="height:800px; border:15px thin grey; padding:17px ">
             <div class="list-group">
                 <div class="row-md-4 process-grid">
-                    <a href="/Category/Index" class="list-group-item">
+                    <a href="/Lectures/Index" class="list-group-item">
                         <h4 data-hover="About">Lectures</h4>
-                        <h2 class="glyphicon glyphicon-folder-open fa-2x" aria-hidden="true"> </h2>
+                        <h2 class="glyphicon glyphicon-book fa-2x" aria-hidden="true"> </h2>
                         <br />
                     </a>
                 </div>
@@ -59,21 +76,15 @@
                 <div class="row-md-4 process-grid">
                     <a href="/Profile/Index" class="list-group-item">
                         <h4 data-hover="About">Profile</h4>
-                        <h2 class="glyphicon glyphicon-book" aria-hidden="true"> </h2>
+                        <h2 class="glyphicon glyphicon-user" aria-hidden="true"> </h2>
                         <br />
                     </a>
                 </div>
-
-                @*<a href="@Html.Action("AddCategory")" class="list-group-item">Add a new Category</a>
-                <a href="@Html.Action("AddQuestion")" class="list-group-item">Add Questions</a>
-                <a href="@Html.Action("Grade Exams")" class="list-group-item">Grading</a>
-                <a href="@Html.Action("Catalog")" class="list-group-item">Catalog</a>*@
             </div>
         </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="height:800px; border:0px solid gray">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="height:800px; border:0px solid gray; overflow-y: auto;">
 
             @RenderBody()
-
         </div>
     </div>
 </body>

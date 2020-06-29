@@ -160,11 +160,7 @@ namespace QuizWebApplication.Controllers
 
         public ActionResult Done(int categoryId, int userId)
         {
-
             var answers = new List<Answers>();
-            // List<QuizCategoryQuestionClass> quizList = new List<QuizCategoryQuestionClass>();
-
-            // var quiz = new QuizCategoryQuestionClass();
 
             using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
             {
@@ -220,20 +216,17 @@ namespace QuizWebApplication.Controllers
             using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
             {
                 sqlConnection.Open();
-                foreach (var answer in answers)
-                {
+
                     using (SqlCommand sqlCommand = new SqlCommand(INSERT_GRADE, sqlConnection))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
                         sqlCommand.Parameters.AddWithValue("@UserId", Session["UserId"]);
-                        sqlCommand.Parameters.AddWithValue("@CategoryId", answer.Question.QuestionId);
+                        sqlCommand.Parameters.AddWithValue("@CategoryId", categoryId);
                         sqlCommand.Parameters.AddWithValue("@Grade", result.Grade);
 
                         sqlCommand.ExecuteNonQuery();
                     }
-
-                }
             }
 
             return View(result);

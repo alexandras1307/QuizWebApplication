@@ -23,40 +23,41 @@ namespace QuizWebApplication.Controllers
 
             using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
             {
-                //try
-                //{
-
-
-                using (SqlCommand sqlCommand = new SqlCommand(GET_GRADES, sqlConnection))
+                try
                 {
-                    sqlConnection.Open();
-
-                    sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.AddWithValue("@UserId", userId);
-
-                    using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                    using (SqlCommand sqlCommand = new SqlCommand(GET_GRADES, sqlConnection))
                     {
+                        sqlConnection.Open();
 
-                        while (sqlDataReader.Read())
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.Parameters.AddWithValue("@UserId", userId);
+
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
-                            var grade = new Grades()
+
+                            while (sqlDataReader.Read())
                             {
-                                Grade = Convert.ToDecimal(sqlDataReader.GetDouble(sqlDataReader.GetOrdinal("Grade"))),
-                                CategoryName = sqlDataReader["CategoryName"].ToString(),
-                            };
+                                var grade = new Grades()
+                                {
+                                    Grade = Convert.ToDecimal(sqlDataReader.GetDouble(sqlDataReader.GetOrdinal("Grade"))),
+                                    CategoryName = sqlDataReader["CategoryName"].ToString(),
+                                    UserId = (int)sqlDataReader["UserId"],
+                                };
 
-                            grades.Add(grade);
+                                grades.Add(grade);
 
+                            }
                         }
                     }
                 }
-                //}
-                //catch (Exception ex)
-                //{
-                //    Console.WriteLine(ex.Message);
-                //    return View("Error");
-                //}
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return View("Error");
+                }
             }
+
+
 
             return View(grades);
         }

@@ -1,6 +1,6 @@
 Create Table UserProfile  
     (  
-	Id int primary key identity,
+	UserId int primary key identity,
 	Email NVARCHAR(200),
 	Password NVARCHAR(200),
 	FirstName NVARCHAR(200),
