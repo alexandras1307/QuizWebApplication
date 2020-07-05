@@ -1,7 +1,75 @@
 ﻿@{
     ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/js/jquery-1.11.0.min.js"></script>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title white-space: pre>Dashboard</title>
+</head>
+<body style="justify-content:center">
+    <div class="header">
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">
+                    <h1 style="padding-bottom: 20px"><a href="~/Home/About"><span class="logo-clr">About</span>Online<span class="logo-clr">Education</span></a></h1>
+                </div>
+            </div>
+            <div class="head-right" style="float:right; padding-left: 250px">
+                <div class="top-nav">
+                    <span class="menu"> <img src="images/icon.png" alt="" /></span>
+                    <div class="top-nav">
+                        <span class="menu"> <img src="images/icon.png" alt="" /></span>
+                        <ul class="res">
+                            <li><a href="/UserRegistration/Index"><span data-hover="Registration">Registration</span></a></li>&nbsp;&nbsp;
+                            <li><a href="/Login/Login"><span data-hover="Login">Login</span></a></li>
+                        </ul>
+
+                        <!-- script-for-menu -->
+                        <script>
+                            $("span.menu").click(function () {
+                                $("ul.res").slideToggle(300, function () {
+                                    // Animation complete.
+                                });
+                            });
+                        </script>
+                        <!-- /script-for-menu -->
+                    </div>
+                </div>
+            </div>
+            <div class="social" style="float:right; padding-left: 350px">
+                <ul>
+                    <li><a class="fa" href="#"><span> </span> </a></li>
+                    <li><a class="tw" href="#"><span> </span> </a></li>
+                    <li><a class="p" href="#"><span> </span> </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-main" >
+        <div class="container">
+            <div class="process">
+                <h2>Who are we?</h2>
+                    <p>We are a free online education platform.</p>
+                    <p>Any student can create an account and start learning grom the best.</p>
+                    <p>Are you a teacher? You can create an account by <a href="/Home/Contact">contacting</a> one of our administrators!</p>
+            </div>
+        </div>
+    </div>
+
+    <!--header end here-->
+    <!--banner start here-->
+    <div class="banner" style="background: url(../Images/online-learning-platforms-cover.jpg); background-repeat:no-repeat; background-size: 100% auto;  margin:auto">
+        <div class="container" ; style="margin:auto">
+        </div>
+    </div>
+</body>
+</html>

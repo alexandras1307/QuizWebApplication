@@ -13,6 +13,8 @@ namespace QuizWebApplication.Controllers
     public class UserRegistrationController : Controller
     {
         private const string INSERT_NEW_PROFILE = "InsertUserProfile";
+        private const string INSERT_FINAL_GRADE = "InsertFinalGrade";
+
         public ActionResult Index()
         {
             return View();
@@ -41,9 +43,13 @@ namespace QuizWebApplication.Controllers
                     {
                         return RedirectToAction("SuccessfulRegistrationStudent");
                     }
+                    else
+                    {
+                        return RedirectToAction("UnsuccessfulRegistration");
+                    }
 
-                    sqlConnection.Close();
-                }              
+                }
+
                 return View(profile);
             }
         }
@@ -51,6 +57,11 @@ namespace QuizWebApplication.Controllers
         public ActionResult SuccessfulRegistrationStudent()
         {
             return View();
-        }       
+        }
+
+        public ActionResult UnsuccessfulRegistration()
+        {
+            return View();
+        }
     }
 }

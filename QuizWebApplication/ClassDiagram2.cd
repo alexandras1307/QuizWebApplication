@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="QuizWebApplication.Controllers.CatalogController">
+    <Position X="5" Y="13.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAABAAAAAAAAAAQAEAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CatalogController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Controllers.CategoryController">
+    <Position X="4.75" Y="5.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAACgAAAAAAAAAAAAAAAQAAAAAAEAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CategoryController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Controllers.GradesController">
+    <Position X="13.75" Y="13.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAQAAAAAAAAAAgEAAAAAAAA=</HashCode>
+      <FileName>Controllers\GradesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Controllers.HomeController">
+    <Position X="13.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEACAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Controllers.LecturesController">
+    <Position X="4.75" Y="16.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAEBAAAQAACAAAEAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\LecturesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Controllers.LoginController">
+    <Position X="4.75" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAgAAAAQAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Controllers\LoginController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Controllers.ProfileController">
+    <Position X="9" Y="3.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAEAACAAAAAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ProfileController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Controllers.QuestionController">
+    <Position X="4.5" Y="9" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAACQAAAAAAAAAAAAAAAQAAAAAAEAECAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\QuestionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Controllers.QuizCategoryQuestionController">
+    <Position X="13.75" Y="17.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAEAAAAIAAA=</HashCode>
+      <FileName>Controllers\QuizCategoryQuestionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Controllers.QuizController">
+    <Position X="13.25" Y="6.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AABAACAAAAAAAAAAAAoAAAQCAAAAAIACAMEAAAgAAAA=</HashCode>
+      <FileName>Controllers\QuizController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Controllers.UserRegistrationController">
+    <Position X="4.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAYAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserRegistrationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Models.Answers">
+    <Position X="13" Y="11.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Answers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Models.Category">
+    <Position X="9.25" Y="6.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Models.Grades">
+    <Position X="9.25" Y="13.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAAAAAAAAAAgAACAAAAAAAAAAAEEAAAg=</HashCode>
+      <FileName>Models\Grades.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Models.Lectures">
+    <Position X="9" Y="17.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAYAAAA=</HashCode>
+      <FileName>Models\Lectures.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Models.Question">
+    <Position X="9" Y="8.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAgACgAAAAAAAAAAAAAAAAAAAAgQAAAA=</HashCode>
+      <FileName>Models\Question.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Models.QuizCategoryQuestionClass">
+    <Position X="17.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgACgAAAAAAAACAAAAAAAAAAAgYAAAA=</HashCode>
+      <FileName>Models\QuizCategoryQuestionClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Models.QuizResult">
+    <Position X="18" Y="8.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAEAAAA=</HashCode>
+      <FileName>Models\QuizResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuizWebApplication.Models.UserProfile">
+    <Position X="9.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAAAAAgAAAAAAAAiAAAAAAAAIAg=</HashCode>
+      <FileName>Models\UserProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="QuizWebApplication.Models.Enums.RoleEnumeration">
+    <Position X="13.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Enums\RoleEnumeration.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

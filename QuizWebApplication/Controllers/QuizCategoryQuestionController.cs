@@ -14,37 +14,107 @@ namespace QuizWebApplication.Controllers
 
         public ActionResult Index()
         {
-            ViewData["Message"] = CategoryQuestions();
-            return View();
+            var model = GetModules();
+            return View(model);
         }
 
-        public static List<QuizCategoryQuestionClass> CategoryQuestions()
+        private List<Module> GetModules()
         {
-            List<QuizCategoryQuestionClass> categoryQuestions = new List<QuizCategoryQuestionClass>();
+            var module = new List<Module>();
             string sqlConnection = "Data Source=localhost;Initial Catalog=QuizApplicationDatabase;Integrated Security=True";
 
             using (SqlConnection sqlConn = new SqlConnection(sqlConnection))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("GetAllLectureQuiz", sqlConn))
-                {
-                    sqlConn.Open();
-                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                sqlConn.Open();
+                var categories = GetAllCategories(sqlConn);
 
+                foreach (var category in categories)
+                {
+                    var questions = GetAllQuestionsForCategory(category, sqlConn);
+                    var lectures = GetAllLecturesForCategory(category, sqlConn);
+                    module.Add(new Module
+                    {
+                        Category = category,
+                        Questions = questions,
+                        Lectures = lectures
+                    });
+                }
+
+                sqlConn.Close();
+            }
+            return module;
+        }
+
+        private List<Lectures> GetAllLecturesForCategory(Category category, SqlConnection sqlConn)
+        {
+            var result = new List<Lectures>();
+            using (SqlCommand sqlCommand = new SqlCommand("GetAllLecturesForCategory", sqlConn))
+            {
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("CategoryId", category.CategoryId);
+                using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                { 
                     while (sqlDataReader.Read())
                     {
-                        QuizCategoryQuestionClass quizCategoryQuestion = new QuizCategoryQuestionClass();
-                        quizCategoryQuestion.CategoryId = sqlDataReader["CategoryId"].GetHashCode();
-                        quizCategoryQuestion.CategoryName = sqlDataReader["CategoryName"].ToString();
-                        quizCategoryQuestion.QuestionText = sqlDataReader["QuestionText"].ToString();
-                        quizCategoryQuestion.Lecture = sqlDataReader["Lecture"].ToString();
-                        categoryQuestions.Add(quizCategoryQuestion);
+                        var question = new Lectures
+                        {
+                            Id = (int)sqlDataReader["Id"],
+                            Lecture = sqlDataReader["Lecture"].ToString()
+                        };
+                        result.Add(question);
+
                     }
-                    sqlConn.Close();
                 }
-                return categoryQuestions;
+
             }
-            
+            return result;
+        }
+
+        private List<Question> GetAllQuestionsForCategory(Category category, SqlConnection sqlConn)
+        {
+            var result = new List<Question>();
+            using (SqlCommand sqlCommand = new SqlCommand("GetAllQuestionsForCategory", sqlConn))
+            {
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("CategoryId", category.CategoryId);
+                using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                {
+                    while (sqlDataReader.Read())
+                    {
+                        var question = new Question
+                        {
+                            QuestionId = (int)sqlDataReader["QuestionId"],
+                            QuestionText = sqlDataReader["QuestionText"].ToString()
+                        };
+                        result.Add(question);
+
+                    }
+                }
+            }
+            return result;
+        }
+
+        private List<Category> GetAllCategories(SqlConnection sqlConn)
+        {
+            var result = new List<Category>();
+            using (SqlCommand sqlCommand = new SqlCommand("GetAllCategories", sqlConn))
+            {
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                {
+                    while (sqlDataReader.Read())
+                    {
+                        var category = new Category
+                        {
+                            CategoryId = (int)sqlDataReader["CategoryId"],
+                            CategoryName = sqlDataReader["CategoryName"].ToString()
+                        };
+                        result.Add(category);
+
+                    }
+                }
+            }
+            return result;
         }
     }
 }

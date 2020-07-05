@@ -1,17 +1,94 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/js/jquery-1.11.0.min.js"></script>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title white-space: pre>Dashboard</title>
+</head>
+<body style="justify-content:center">
+    <div class="header">
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">
+                    <h1 style="padding-bottom: 20px"><a href="~/Home/Contact"><span class="logo-clr">Contact</span>Online<span class="logo-clr">Education</span></a></h1>
+                </div>
+            </div>
+            <div class="head-right" style="float:right; padding-left: 250px">
+                <div class="top-nav">
+                    <span class="menu"> <img src="images/icon.png" alt="" /></span>
+                    <div class="top-nav">
+                        <span class="menu"> <img src="images/icon.png" alt="" /></span>
+                        <ul class="res">
+                            <li><a href="/UserRegistration/Index"><span data-hover="Registration">Registration</span></a></li>&nbsp;&nbsp;
+                            <li><a href="/Login/Login"><span data-hover="Login">Login</span></a></li>
+                        </ul>
+                        <!-- script-for-menu -->
+                        <script>
+                            $("span.menu").click(function () {
+                                $("ul.res").slideToggle(300, function () {
+                                    // Animation complete.
+                                });
+                            });
+                        </script>
+                        <!-- /script-for-menu -->
+                    </div>
+                </div>
+            </div>
+            <div class="social" style="float:right; padding-left: 350px">
+                <ul>
+                    <li><a class="fa" href="#"><span> </span> </a></li>
+                    <li><a class="tw" href="#"><span> </span> </a></li>
+                    <li><a class="p" href="#"><span> </span> </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-main" style="max-width: 1140px">
+        <div class="container" style="padding-left:20px">
+            <div class="process">
+                <h2>Do you want to contact us?</h2>
+                <p>Are you a teacher? You can create an account by <a href="/Home/Contact">contacting</a> one of our administrators from the support staff. You can find the email below.</p>
+                <p>You can also find us on social media: Facebook, Twitter or Pinterest! Just click on the icons above!</p>
+                <div style="padding-left:30px; padding-top:20px">
+                    <h4 style="font-weight:bold">Address:</h4>
+                    <address style="padding-left:20px">
+                        Str. Memorandumului nr. 28<br />
+                        Cluj-Napoca<br />
+                        Postal Code 400114<br />
+                        Jud. Cluj, România<br />
+                    </address>
+                    <h4 style="font-weight:bold">Phone:</h4>
+                    <address style="padding-left:20px">
+                        <abbr title="Phone">Phone:</abbr>
+                        +4 0264 401 200<br />
+                        <abbr title="Fax">Fax:</abbr>
+                        +4 0264 592 055
+                    </address>
+                    <h4 style="font-weight:bold">Email:</h4>
+                    <address style="padding-left:20px">
+                        <strong>Support:</strong>   <a href="mailto:Support@example.com">contact@onlineeducation.ro</a><br />
+                        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">contact@utcluj.ro</a>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--header end here-->
+    <!--banner start here-->
+    <div class="banner" style="background: url(../Images/hello-contact.png); background-repeat:no-repeat; min-width: 1140px; background-size: 100% auto; margin:auto">
+        <div class="container" ; style="margin:auto">
+        </div>
+    </div>
+</body>
+</html>

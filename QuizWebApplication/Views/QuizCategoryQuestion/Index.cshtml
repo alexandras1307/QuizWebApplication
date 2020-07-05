@@ -1,40 +1,31 @@
-﻿@model QuizWebApplication.Models.QuizCategoryQuestionClass
+﻿@model List<QuizWebApplication.Models.Module>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/TeacherDashboardLayout.cshtml";
 }
 
-@*@{
-        IEnumerable<QuizWebApplication.Models.QuizCategoryQuestionClass> quizCategoryQuestions = ViewData["Message"] as IEnumerable<QuizWebApplication.Models.QuizCategoryQuestionClass>;
-    }*@
-
 <br />
 <h1 style="font-weight:bold">Modules</h1><br />
 
-@*<div id="accordion1" style="text-align:justify">
-        @foreach (var item in quizCategoryQuestions)
+<table class="table">
+        @foreach (var module in Model)
         {
-            <h3><u>@item.CategoryName</u></h3>
-
-                @item.Lecture
-                @item.QuestionText.
-        }
-    </div>*@
-<div>
-    @for (int i = 0; i < Model.CategoryId; i++)
+        <tr style="background-color:#006fc4; color:#fff; font-weight:bold">
+            <td>@module.Category.CategoryName</td>
+        </tr>
+        foreach (var question in module.Questions)
         {
-        @Model.CategoryName
-
-            for (int j = 0; j < Model.QuestionText[i]; j++)
-            {
-                @Model.QuestionText
+            <tr style="background-color:#c7ebfc">
+                <td style="padding-left:30px">@question.QuestionText</td>
+            </tr>
         }
 
-        for(int k = 0; k < Model.Lecture[i]; k++)
+        foreach (var lecture in module.Lectures)
         {
-            @Model.Lecture
+            <tr style="background-color:#dcf2fc">                
+                <td><a href="@lecture.Lecture">@lecture.Lecture</a></td>
+            </tr>
         }
-
     }
-    }
-</div>
+</table>
+

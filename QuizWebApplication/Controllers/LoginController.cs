@@ -61,7 +61,7 @@ namespace QuizWebApplication.Controllers
                             else
                             {
                                 sqlConnection.Close();
-                                return View("Error");
+                                return View("UnsuccessfulLogin");
                             }
                         }
                     }
@@ -69,10 +69,15 @@ namespace QuizWebApplication.Controllers
                 catch(Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    return View("Error");
+                    return View("UnsuccessfulLogin");
                 }
             }
            
+        }
+
+        public ActionResult UnsuccessfulLogin()
+        {
+            return View();
         }
     }
 }

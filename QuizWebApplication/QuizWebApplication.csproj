@@ -139,8 +139,10 @@
     <Compile Include="Models\CategoryDataAccess.cs" />
     <Compile Include="Models\Enums\RoleEnumeration.cs" />
     <Compile Include="Models\FileModel.cs" />
+    <Compile Include="Models\FinalGrades.cs" />
     <Compile Include="Models\Grades.cs" />
     <Compile Include="Models\Lectures.cs" />
+    <Compile Include="Models\Module.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Answers.cs" />
     <Compile Include="Models\QuizCategoryQuestionClass.cs" />
@@ -167,9 +169,13 @@
     <Content Include="Images\classroom.jpg" />
     <Content Include="Images\course.jpg" />
     <Content Include="Images\ftr-sprite.png" />
+    <Content Include="Images\hello-contact.png" />
     <Content Include="Images\icon.png" />
     <Content Include="Images\icons.svg" />
     <Content Include="Images\link.png" />
+    <Content Include="Images\online-learning-platforms-cover.jpg" />
+    <Content Include="Images\Online-Learning-Resources-Child.jpg" />
+    <Content Include="Images\online-test.jpg" />
     <Content Include="Images\onlineedu.jpg" />
     <Content Include="Images\onlineeduLogin.jpg" />
     <Content Include="Images\onlineeduLoginBackground.jpg" />
@@ -189,6 +195,8 @@
     <Content Include="Images\Thumbs.db" />
     <Content Include="fonts\Dosis-Regular-webfont.ttf" />
     <Content Include="fonts\Sintony-Regular-webfont.ttf" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\easing.js" />
     <Content Include="Scripts\jquery-1.11.0.min.js" />
@@ -257,6 +265,7 @@
     <Content Include="Views\Catalog\Details.cshtml" />
     <Content Include="Views\Profile\Teacher.cshtml" />
     <Content Include="Views\File\Index.cshtml" />
+    <Content Include="Views\UserRegistration\UnsuccessfulRegistration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />

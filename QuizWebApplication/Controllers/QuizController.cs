@@ -20,6 +20,7 @@ namespace QuizWebApplication.Controllers
         private const string INSERT_USER_TAKEN_QUIZ = "InsertUserTakenQuiz";
         private const string GET_ANSWERS_BY_STUDENT_CATEGORY = "GetAnswersByStudentAndCategory";
         private const string INSERT_GRADE = "InsertNewGrade";
+        private const string INSERT_FINAL_GRADE = "InsertFinalGrade";
 
         public ActionResult Index(string CategoryList)
         {
@@ -66,17 +67,10 @@ namespace QuizWebApplication.Controllers
 
         public ActionResult Take(string categoryList)
         {
-            // var categoryId = 0;
-            //if (!int.TryParse(categoryList, out categoryId))
-            //{
-            //    return View("Error");
-            //}
-
             List<Answers> quizList = new List<Answers>();
 
             var quiz = new QuizCategoryQuestionClass();
-            // quiz.Questions = new List<Answers>();
-            // quiz.CategoryId = categoryId;
+
             using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
             {
 
@@ -114,7 +108,7 @@ namespace QuizWebApplication.Controllers
                 }
 
 
-
+                // Insert user into UTQ to make sure the student cannot take the same test again
                 using (SqlCommand sqlCommand = new SqlCommand(INSERT_USER_TAKEN_QUIZ, sqlConnection))
                 {
                     sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -124,9 +118,6 @@ namespace QuizWebApplication.Controllers
 
                     sqlCommand.ExecuteNonQuery();
                 }
-
-
-
             }
 
             return View(quizList);
@@ -228,6 +219,23 @@ namespace QuizWebApplication.Controllers
                         sqlCommand.ExecuteNonQuery();
                     }
             }
+
+
+            // insert user into Final grade to allow the grade to be updated after each quiz
+            using (SqlConnection sqlConnection = new SqlConnection(DbConnection))
+            {
+                sqlConnection.Open();
+                using (SqlCommand sqlCommand = new SqlCommand(INSERT_FINAL_GRADE, sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                    sqlCommand.Parameters.AddWithValue("@TimeStamp", DateTime.Now.ToString());
+                    
+                    sqlCommand.ExecuteNonQuery();
+                }
+            }
+
 
             return View(result);
         }

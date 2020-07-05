@@ -1,12 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
 
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Online School A Education School category Flat bootstrap Responsive  Website Template | Home :: w3layouts</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
     <script src="js/jquery-1.11.0.min.js"></script>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -22,12 +21,12 @@
     <script type="text/javascript" src="js/move-top.js"></script>
     <script type="text/javascript" src="js/easing.js"></script>
     <script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){
-					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
-			});
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
     </script>
 </head>
 <body>
@@ -37,48 +36,36 @@
                 <div class="logo">
                     <h1 style="padding-bottom: 20px"><a href="index.html">Online<span class="logo-clr">Education</span></a></h1><br />
                 </div>
-                <div class="head-left">
-                        <!-- script-for-menu -->
-                        <script>
-                            $("span.menu").click(function () {
-                                $("ul.res").slideToggle(300, function () {
+                <div class="head-right" style="float:right; padding-left: 250px">
+                    <div class="top-nav">
+                        <span class="menu"> <img src="images/icon.png" alt="" /></span>
+                        <div class="top-nav">
+                            <span class="menu"> <img src="images/icon.png" alt="" /></span>
+                            <ul class="res">
+                                <li><a href="/UserRegistration/Index"><span data-hover="Registration">Registration</span></a></li>&nbsp;&nbsp;
+                                <li><a href="/Login/Login"><span data-hover="Login">Login</span></a></li>
+                            </ul>
+
+                            <!-- script-for-menu -->
+                            <script>
+                                $("span.menu").click(function () {
+                                    $("ul.res").slideToggle(300, function () {
+                                        // Animation complete.
+                                    });
                                 });
-                            });
-                        </script>
-                        <!-- /script-for-menu -->
-                    </div>
-                    <br />
-                    <div class="social">
-                        <ul>
-                            <li><a class="fa" href="#"><span> </span> </a></li>
-                            <li><a class="tw" href="#"><span> </span> </a></li>
-                            <li><a class="p" href="#"><span> </span> </a></li>
-                        </ul>
+                            </script>
+                            <!-- /script-for-menu -->
+                        </div>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-            <div class="head-right" style="float:right; padding-left: 300px">
-                <div class="top-nav">
-                    <span class="menu"> <img src="images/icon.png" alt="" /></span>
-                    <div class="top-nav">
-                        <span class="menu"> <img src="images/icon.png" alt="" /></span>
-                        <ul class="res">
-                            <li><a href="/UserRegistration/Index"><span data-hover="Registration">Registration</span></a></li>&nbsp;&nbsp;
-                            <li><a href="/Login/Login"><span data-hover="Login">Login</span></a></li>
-                        </ul>
-
-                        <!-- script-for-menu -->
-                        <script>
-                            $("span.menu").click(function () {
-                                $("ul.res").slideToggle(300, function () {
-                                    // Animation complete.
-                                });
-                            });
-                        </script>
-                        <!-- /script-for-menu -->
-                    </div>
+                <div class="social">
+                    <ul>
+                        <li><a class="fa" href="#"><span> </span> </a></li>
+                        <li><a class="tw" href="#"><span> </span> </a></li>
+                        <li><a class="p" href="#"><span> </span> </a></li>
+                    </ul>
                 </div>
-                <div class="clearfix"> </div>
             </div>
         </div>
     </div>
@@ -98,7 +85,7 @@
                     <div class="col-md-4 process-grid">
                         <span class="glyphicon glyphicon-file" aria-hidden="true"> </span>
                         <h4>Learning</h4>
-                        <p>The lectures are uploaded on the platform.</p>
+                        <p>Lectures are uploaded on the platform.</p>
                     </div>
                     <div class="col-md-4 process-grid">
                         <span class="glyphicon glyphicon-th-list" aria-hidden="true"> </span>
@@ -107,8 +94,8 @@
                     </div>
                     <div class="col-md-4 process-grid">
                         <span class="glyphicon glyphicon-education" aria-hidden="true"> </span>
-                        <h4>Exams</h4>
-                        <p>Final exam contains questions from every lesson.</p>
+                        <h4>Grades</h4>
+                        <p>Every qiuz taken is graded.</p>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -142,7 +129,16 @@
                         <h3>Classroom</h3>
                     </div>
                 </div>
-                <div class="clearfix"> </div>
+                <div class="col-md-4 portfolio-wrapper">
+                    <a href="~/images/online-test.jpg" class="b-link-stripe b-animate-go  swipebox" title="Quiz">
+                        <img src="~/images/online-test.jpg" alt="" class="img-responsive"><div class="b-wrapper">
+                            <h2 class="b-animate b-from-left    b-delay03"><img src="images/link.png" alt="" /></h2>
+                        </div>
+                    </a>
+                    <div class="work-details">
+                        <h3>Quiz</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -170,9 +166,9 @@
     <link rel="stylesheet" href="css/swipebox.css">
     <script src="js/jquery.swipebox.min.js"></script>
     <script type="text/javascript">
-			jQuery(function($) {
-				$(".swipebox").swipebox();
-			});
+        jQuery(function ($) {
+            $(".swipebox").swipebox();
+        });
     </script>
 </body>
 </html>

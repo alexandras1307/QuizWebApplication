@@ -42,7 +42,9 @@ namespace QuizWebApplication.Controllers
                                 {
                                     FirstName = sqlReader.GetString(0),
                                     LastName = sqlReader.GetString(1),
-                                    Email = sqlReader.GetString(2)
+                                    Email = sqlReader.GetString(2),
+                                    UserId = sqlReader.GetInt32(3)
+
                                 };
 
                                 list.Add(student);
@@ -82,27 +84,49 @@ namespace QuizWebApplication.Controllers
 
                         while (sqlDataReader.Read())
                         {
-                            var grade = new Grades()
+                            var grade = new Grades();
+                            
+                                if (!sqlDataReader.IsDBNull(3))
+                                    grade.Grade = Convert.ToDecimal(sqlDataReader.GetDouble(sqlDataReader.GetOrdinal("Grade")));
+                                else
+                                {
+                                    grade.Grade = 0;
+                                }
+
+                            if (!sqlDataReader.IsDBNull(4))
+                                grade.CategoryName = sqlDataReader["CategoryName"].ToString();
+                            else
                             {
-                                Grade = Convert.ToDecimal(sqlDataReader.GetDouble(sqlDataReader.GetOrdinal("Grade"))),
-                                CategoryName = sqlDataReader["CategoryName"].ToString(),
-                                FirstName = sqlDataReader["FirstName"].ToString(),
-                                LastName = sqlDataReader["LastName"].ToString(),
+                                grade.CategoryName = "No grades yet";
                             };
 
+                            grade.FirstName = sqlDataReader["FirstName"].ToString();
+                            grade.LastName = sqlDataReader["LastName"].ToString();
+                            grade.UserId = (int)sqlDataReader["UserId"];
+                            //if (!sqlDataReader.IsDBNull(3))
+                            //{
+                            //    grade.CategoryName = "test";
+                            //}
+                            //if (!sqlDataReader.IsDBNull(4))
+                            //{
+                            //    grade.Grade
+                            //}
                             grades.Add(grade);
 
                         }
+
                     }
-                }
-            
-                //catch (Exception ex)
-                //{
-                //    Console.WriteLine(ex.Message);
-                //    return View("Error");
-                //}
+                };
             }
-            return View(grades);
+         return View(grades);
         }
     }
 }
+
+    //catch (Exception ex)
+    //{
+    //    Console.WriteLine(ex.Message);
+    //    return View("Error");
+    //}
+
+           

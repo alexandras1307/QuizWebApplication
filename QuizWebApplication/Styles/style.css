@@ -358,7 +358,7 @@ label.check {
     font-size: 15px;
     color: #fff;
     margin-bottom: 10px;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     letter-spacing: 2px;
 }
 
@@ -513,7 +513,7 @@ label.switch {
 
 li:nth-child(2) a,
 label.switch {
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     font-size: 14px;
     letter-spacing: 2px;
 }

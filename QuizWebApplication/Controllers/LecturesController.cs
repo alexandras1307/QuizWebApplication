@@ -96,7 +96,7 @@ namespace QuizWebApplication.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(Lectures lecture, string CategoryList)
+        public ActionResult Create(Lectures link, string CategoryList)
         {
             var categoryId = 0;
             if (!int.TryParse(CategoryList, out categoryId))
@@ -115,7 +115,7 @@ namespace QuizWebApplication.Controllers
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
                         sqlCommand.Parameters.AddWithValue("@CategoryId", categoryId);
-                        sqlCommand.Parameters.AddWithValue("@Lecture", lecture.Lecture);
+                        sqlCommand.Parameters.AddWithValue("@Lecture", link.Lecture);
 
                         sqlCommand.ExecuteNonQuery();
                     }

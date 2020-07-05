@@ -1,8 +1,23 @@
 ﻿
 @{
-    ViewBag.Title = "UnsuccessfulLogin";
+    ViewBag.Title = "Unsuccessful Login";
     Layout = "~/Views/Login/_LoginLayoutPage.cshtml";
 }
 
-<h2>UnsuccessfulLogin</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login was Unsuccessful!</title>
+</head>
+<body>
+    <div>
+        <h1 style="justify-content:center; padding-top:350px; top:500px; color:white"> Login<br />was Unsuccessful!</h1>
+        <h2>You might have enetered the wrong password or email address.<br /> Try again!</h2>
+        <div style="position:fixed; top:625px; left: 900px; font-size:x-large; font-weight:bold">
+            <a href="/UserRegistration/Index">Go to Registration</a>
+        </div>
+    </div>
+</body>
+</html>

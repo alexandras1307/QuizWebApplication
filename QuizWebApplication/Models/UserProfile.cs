@@ -9,7 +9,7 @@ namespace QuizWebApplication.Models
     public class UserProfile
     {
         [Key]
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "Please enter your name!")]
